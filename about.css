@@ -1,0 +1,615 @@
+/* ============================================================
+   DOJE — About Us
+   Premium, minimal, editorial. Montserrat + cloud atmosphere.
+   ============================================================ */
+
+:root {
+    --ink:        #111111;
+    --gold:       #D1A03B;
+    --gold-soft:  #e0b968;
+    --bg:         #F8F7F4;
+    --white:      #FFFFFF;
+    --muted:      #6b6b6b;
+    --line:       rgba(17, 17, 17, .12);
+
+    --wrap:       1180px;
+    --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body.ab2 {
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+.ab2-gold { color: var(--gold); }
+
+/* ---------- Cloud atmosphere (hero → brewing timeline only) ---------- */
+.ab2-cloud-zone {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+}
+.ab2-clouds {
+    position: absolute;
+    inset: -8% 0;
+    background: url("assets/about-page assets/clouds-optimized.jpg") center top / cover no-repeat;
+    opacity: .6;
+    z-index: -2;
+    will-change: transform;
+    pointer-events: none;
+}
+.ab2-clouds--far {
+    background-position: center bottom;
+    background-size: 130% auto;
+    opacity: .3;
+    z-index: -3;
+}
+/* soft wash for text legibility + fade to clean white before the Sunit section */
+.ab2-cloud-zone::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(248,247,244,.35), rgba(248,247,244,.45) 80%, var(--bg) 99%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.ab2-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 22px clamp(20px, 5vw, 56px);
+    transition: background .4s var(--ease), box-shadow .4s var(--ease), padding .4s var(--ease);
+}
+.ab2-nav.is-stuck {
+    background: rgba(248, 247, 244, .82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 var(--line);
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+.ab2-nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 2.4vw, 34px);
+    list-style: none;
+}
+.ab2-nav-links--right { justify-content: flex-end; }
+.ab2-nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: .78;
+    transition: opacity .25s var(--ease);
+}
+.ab2-nav-links a:hover { opacity: 1; }
+.ab2-nav-links a.is-active { opacity: 1; color: var(--gold); }
+.ab2-nav-logo {
+    display: block;
+    justify-self: center;
+    line-height: 0;
+}
+.ab2-nav-logo img {
+    display: block;
+    height: clamp(30px, 3.2vw, 40px);
+    width: auto;
+}
+.ab2-nav-cta {
+    padding: 9px 20px;
+    border-radius: 100px;
+    background: var(--gold);
+    color: #fff !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
+    transition: transform .3s var(--ease), background .3s var(--ease);
+}
+.ab2-nav-cta:hover { background: #bd8d2c; transform: translateY(-1px); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.ab2-hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 90px 20px 60px;
+    overflow: hidden;
+}
+.ab2-hero-inner { position: relative; z-index: 3; }
+.ab2-hero-title {
+    font-weight: 700;
+    font-size: clamp(2.6rem, 8.5vw, 7.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+.ab2-hero-line { display: block; overflow: hidden; }
+.ab2-hero-line > span { display: inline-block; }
+
+/* Floating can overlaps the headline — large, product-first (per Figma).
+   Sized against viewport height so hero + can always fit one screen. */
+.ab2-hero-can {
+    position: relative;
+    z-index: 2;
+    margin-top: -7vh;
+    will-change: transform;
+    filter: drop-shadow(0 40px 45px rgba(17,17,17,.28));
+}
+.ab2-hero-can img {
+    height: clamp(280px, 46vh, 540px);
+    width: auto;
+    aspect-ratio: 647 / 1589;
+    margin: 0 auto;
+}
+
+.ab2-scroll-cue {
+    position: absolute;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    z-index: 3;
+}
+.ab2-scroll-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+    animation: ab2-bob 1.8s var(--ease) infinite;
+}
+@keyframes ab2-bob { 0%,100% { transform: translateY(0); opacity:1;} 50% { transform: translateY(8px); opacity:.4;} }
+
+/* ============================================================
+   Shared section rhythm
+   ============================================================ */
+section { position: relative; }
+
+.ab2-eyebrow {
+    text-align: center;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+.ab2-divider {
+    display: block;
+    width: 220px;
+    max-width: 60%;
+    height: 0;
+    margin: 26px auto 40px;
+    border-top: 2px dashed rgba(209, 160, 59, .6);
+}
+
+/* ---------- OUR STORY ---------- */
+.ab2-story {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(90px, 14vh, 170px) 24px;
+    text-align: center;
+}
+.ab2-story-text {
+    font-size: clamp(1.15rem, 2.4vw, 1.7rem);
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--ink);
+}
+.ab2-badge {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.ab2-badge-ring {
+    width: 34px; height: 34px;
+    border: 4px solid var(--gold);
+    border-radius: 50%;
+    margin-bottom: 6px;
+}
+.ab2-badge-name {
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+}
+.ab2-badge-est {
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-size: .78rem;
+    color: var(--gold);
+}
+
+/* ============================================================
+   FEATURES  (bottle centred, four blocks around)
+   ============================================================ */
+.ab2-features {
+    position: relative;
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: clamp(60px, 9vh, 120px) clamp(20px, 5vw, 40px);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "tl bottle tr"
+        "bl bottle br";
+    column-gap: clamp(20px, 5vw, 70px);
+    row-gap: clamp(50px, 8vh, 110px);
+    align-items: center;
+}
+.ab2-features-bottle {
+    grid-area: bottle;
+    align-self: center;
+    justify-self: center;
+    will-change: transform;
+    filter: drop-shadow(0 30px 40px rgba(17,17,17,.22));
+}
+.ab2-features-bottle img {
+    height: clamp(440px, 72vh, 720px);
+    width: auto;
+    aspect-ratio: 484 / 1821;
+    margin: 0 auto;
+}
+.ab2-feature--tl { grid-area: tl; }
+.ab2-feature--tr { grid-area: tr; }
+.ab2-feature--bl { grid-area: bl; }
+.ab2-feature--br { grid-area: br; }
+
+/* left column features align right (toward bottle); right column align left */
+.ab2-feature--tl, .ab2-feature--bl { text-align: right; }
+.ab2-feature--tr, .ab2-feature--br { text-align: left; }
+
+.ab2-feature-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+.ab2-feature--tl .ab2-feature-head,
+.ab2-feature--bl .ab2-feature-head { justify-content: flex-end; }
+.ab2-feature-title {
+    font-weight: 700;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+.ab2-feature-icon { width: 30px; height: 30px; object-fit: contain; }
+.ab2-feature-rule {
+    display: block;
+    width: 100%;
+    border-top: 2px dashed rgba(209, 160, 59, .55);
+    margin-bottom: 16px;
+}
+.ab2-feature-text {
+    font-size: .95rem;
+    color: var(--muted);
+    max-width: 300px;
+}
+.ab2-feature--tr .ab2-feature-text,
+.ab2-feature--br .ab2-feature-text { margin-left: 0; }
+.ab2-feature--tl .ab2-feature-text,
+.ab2-feature--bl .ab2-feature-text { margin-left: auto; }
+
+/* ============================================================
+   BREWING TIMELINE
+   ============================================================ */
+.ab2-timeline {
+    position: relative;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: clamp(60px, 10vh, 130px) 24px;
+}
+.ab2-timeline-track {
+    position: absolute;
+    top: clamp(60px, 10vh, 130px);
+    bottom: clamp(60px, 10vh, 130px);
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+}
+.ab2-timeline-line,
+.ab2-timeline-fill {
+    position: absolute;
+    inset: 0;
+    width: 2px;
+    border-radius: 2px;
+}
+.ab2-timeline-line {
+    background-image: linear-gradient(rgba(209,160,59,.4) 55%, transparent 55%);
+    background-size: 2px 16px;
+}
+.ab2-timeline-fill {
+    height: 0%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(209,160,59,.6);
+}
+
+.ab2-milestones { list-style: none; }
+.ab2-ms {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(40px, 9vw, 130px);
+    align-items: center;
+    padding: clamp(34px, 6vh, 64px) 0;
+    opacity: .32;
+    transition: opacity .6s var(--ease);
+}
+.ab2-ms.is-active { opacity: 1; }
+
+.ab2-ms-node {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 26px; height: 26px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--bg);
+    border: 3px solid rgba(209,160,59,.5);
+    z-index: 2;
+    transition: border-color .4s var(--ease), box-shadow .4s var(--ease), background .4s var(--ease);
+}
+.ab2-ms.is-active .ab2-ms-node {
+    border-color: var(--gold);
+    background: var(--gold);
+    box-shadow: 0 0 0 6px rgba(209,160,59,.18);
+}
+
+.ab2-ms-side--label { text-align: center; }
+.ab2-ms--left  .ab2-ms-side--label { order: 0; }
+.ab2-ms--left  .ab2-ms-side--copy  { order: 1; text-align: center; }
+.ab2-ms--right .ab2-ms-side--copy  { order: 0; text-align: center; }
+.ab2-ms--right .ab2-ms-side--label { order: 1; }
+
+.ab2-ms-title {
+    font-weight: 600;
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+}
+.ab2-ms-icon {
+    width: 46px; height: 46px;
+    margin: 0 auto;
+    object-fit: contain;
+    transition: transform .5s var(--ease);
+}
+.ab2-ms.is-active .ab2-ms-icon { transform: scale(1.15); }
+.ab2-ms-num {
+    display: block;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    letter-spacing: -.01em;
+    margin-bottom: 14px;
+}
+.ab2-ms-text {
+    font-size: .95rem;
+    color: var(--muted);
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   A BRAND OF SUNIT BREWERIES
+   ============================================================ */
+.ab2-brand {
+    text-align: center;
+    padding: clamp(70px, 11vh, 150px) 0 clamp(80px, 12vh, 160px);
+}
+.ab2-brand-title {
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5vw, 3.4rem);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    line-height: 1.12;
+    margin-bottom: clamp(40px, 6vh, 70px);
+}
+.ab2-brand-figure {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto clamp(40px, 6vh, 66px);
+    aspect-ratio: 1800 / 830;
+    overflow: hidden;
+}
+.ab2-brand-figure img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    will-change: transform;
+}
+.ab2-brand-text {
+    max-width: 780px;
+    margin: 0 auto clamp(34px, 5vh, 50px);
+    padding: 0 24px;
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    color: var(--ink);
+}
+
+/* ---------- Buttons ---------- */
+.ab2-btn {
+    display: inline-block;
+    padding: 16px 40px;
+    border-radius: 100px;
+    background: var(--gold);
+    color: #fff;
+    font-weight: 600;
+    font-size: .82rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    transition: transform .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
+    box-shadow: 0 14px 30px rgba(209,160,59,.28);
+}
+.ab2-btn:hover { background: #bd8d2c; transform: translateY(-2px); box-shadow: 0 18px 36px rgba(209,160,59,.36); }
+.ab2-btn--solid { background: var(--ink); box-shadow: 0 14px 30px rgba(17,17,17,.28); }
+.ab2-btn--solid:hover { background: #000; box-shadow: 0 18px 36px rgba(17,17,17,.36); }
+
+/* ============================================================
+   CLOSING — full-bleed hand + can, no copy (per Figma)
+   ============================================================ */
+.ab2-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(40px, 7vh, 90px) 0 0;
+    overflow: clip;
+}
+.ab2-cta-can {
+    width: min(100vw, 1600px);
+    will-change: transform;
+    filter: drop-shadow(0 30px 50px rgba(17,17,17,.25));
+}
+.ab2-cta-can img { width: 100%; }
+
+
+/* ============================================================
+   Reveal animation base states (JS toggles .is-in)
+   ============================================================ */
+.ab2-reveal, [data-feature], [data-ms] .ab2-ms-side {
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+.ab2-reveal.is-in,
+[data-feature].is-in,
+[data-ms].is-in .ab2-ms-side { opacity: 1; transform: none; }
+/* milestone container opacity is controlled separately (active state) */
+[data-ms] { opacity: .32; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .ab2-nav { grid-template-columns: auto 1fr; padding: 16px 20px; }
+    .ab2-nav-links--left { display: none; }
+    .ab2-nav-logo { grid-column: 1; justify-self: start; }
+    .ab2-nav-links--right { grid-column: 2; }
+
+    /* Features → single column below bottle */
+    .ab2-features {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "bottle"
+            "tl" "tr" "bl" "br";
+        row-gap: 46px;
+        text-align: center;
+    }
+    .ab2-feature--tl, .ab2-feature--tr,
+    .ab2-feature--bl, .ab2-feature--br { text-align: center; }
+    .ab2-feature-head { justify-content: center !important; }
+    .ab2-feature-text { margin: 0 auto !important; }
+    .ab2-features-bottle { margin-bottom: 10px; }
+}
+
+@media (max-width: 680px) {
+    /* Timeline → single vertical column, line to the left */
+    .ab2-timeline { padding-left: 8px; }
+    .ab2-timeline-track { left: 14px; transform: none; }
+    .ab2-ms {
+        grid-template-columns: 1fr;
+        row-gap: 12px;
+        padding-left: 44px;
+        text-align: left;
+    }
+    .ab2-ms-node { left: 14px; }
+    .ab2-ms--left .ab2-ms-side, .ab2-ms--right .ab2-ms-side { order: 0 !important; text-align: left !important; }
+    .ab2-ms-side--label { text-align: left; }
+    .ab2-ms-icon, .ab2-ms-text { margin: 0; }
+    .ab2-ms-title { margin-bottom: 12px; }
+    .ab2-ms-icon { margin-bottom: 6px; }
+    .ab2-hero-can { margin-top: -4vh; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; scroll-behavior: auto !important; }
+    .ab2-reveal, [data-feature], [data-ms] .ab2-ms-side { opacity: 1; transform: none; transition: none; }
+    [data-ms] { opacity: 1; }
+}
+
+/* ============================================================
+   Careers-style NAV (shared design, self-contained)
+   ============================================================ */
+.cr-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 20px clamp(20px, 5vw, 56px);
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    transition: background .4s cubic-bezier(0.16,1,0.3,1), box-shadow .4s cubic-bezier(0.16,1,0.3,1), padding .4s cubic-bezier(0.16,1,0.3,1);
+}
+.cr-nav.is-stuck {
+    background: rgba(248, 247, 244, .82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 rgba(17,17,17,.12);
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.cr-nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(14px, 2vw, 26px);
+    list-style: none;
+    margin: 0;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(17, 17, 17, .05);
+    width: fit-content;
+}
+.cr-nav-pill--left { justify-self: start; }
+.cr-nav-pill--right { justify-self: end; background: #D1A03B; }
+.cr-nav-pill a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #111111;
+    opacity: .82;
+    text-decoration: none;
+    transition: opacity .25s cubic-bezier(0.16,1,0.3,1);
+    white-space: nowrap;
+}
+.cr-nav-pill a:hover { opacity: 1; }
+.cr-nav-pill--right a { opacity: .92; }
+.cr-nav-shop { font-weight: 700; }
+.cr-nav-logo { display: block; justify-self: center; line-height: 0; }
+.cr-nav-logo img { display: block; height: clamp(28px, 3vw, 38px); width: auto; }
+@media (max-width: 640px) {
+    .cr-nav { grid-template-columns: auto 1fr auto; gap: 10px; }
+    .cr-nav-pill { padding: 8px 14px; gap: 12px; }
+    .cr-nav-pill a { font-size: 10.5px; letter-spacing: .04em; }
+}

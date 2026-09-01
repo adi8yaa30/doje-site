@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>DOJE | Premium Strong Beer — Rooted in Assam, Rising Beyond</title>
+    <meta name="description" content="DOJE is brewed in Assam. Strong yet smooth, DOJE celebrates those who rise higher and live with unstoppable energy.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Quattrocento:wght@400;700&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Lexend+Giga:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Share+Tech+Mono&family=Orbitron:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@400;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=supreme@400,500,700,800,900&f[]=satoshi@300,400,500,700,900&f[]=panchang@300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <!-- Splitting.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css?v=115">
+    <!-- <model-viewer> web component for the 3D beer can (GLB) -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</head>
+<body class="age-gate-locked">
+
+    <!-- ========== AGE GATE — "The Watch" (engraved verifying eye) ========== -->
+    <div class="age-gate ag-audit" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+        <div class="ag-vignette" aria-hidden="true"></div>
+
+        <!-- Concentric orbit rings behind the eye -->
+        <div class="ag-orbits" aria-hidden="true">
+            <div class="ag-orbit ag-orbit-1"></div>
+            <div class="ag-orbit ag-orbit-2"></div>
+            <div class="ag-orbit ag-orbit-3"></div>
+        </div>
+
+        <!-- Cinematic horizontal scan line -->
+        <div class="ag-scanline" aria-hidden="true"></div>
+
+        <!-- Floating ambient particles -->
+        <div class="ag-particles" aria-hidden="true">
+            <span class="ag-dot ag-dot-1"></span>
+            <span class="ag-dot ag-dot-2"></span>
+            <span class="ag-dot ag-dot-3"></span>
+            <span class="ag-dot ag-dot-4"></span>
+            <span class="ag-dot ag-dot-5"></span>
+            <span class="ag-dot ag-dot-6"></span>
+            <span class="ag-dot ag-dot-7"></span>
+            <span class="ag-dot ag-dot-8"></span>
+        </div>
+
+        <!-- Vertical rule accents -->
+        <div class="ag-vrule ag-vrule-l" aria-hidden="true"></div>
+        <div class="ag-vrule ag-vrule-r" aria-hidden="true"></div>
+
+        <!-- Corner accents — all four -->
+        <div class="ag-corner ag-corner-tl" aria-hidden="true"></div>
+        <div class="ag-corner ag-corner-tr" aria-hidden="true"></div>
+        <div class="ag-corner ag-corner-bl" aria-hidden="true"></div>
+        <div class="ag-corner ag-corner-br" aria-hidden="true"></div>
+
+        <!-- 21+ badge bottom-right -->
+        <div class="ag-age-badge" aria-hidden="true"><span>21+</span></div>
+
+        <!-- Brand mark — top left -->
+        <img class="ag-brand" src="assets/doje-logo.PNG" alt="DOJE">
+
+        <div class="ag-inner">
+            <!-- Step 1: legal drinking age verification -->
+            <div class="ag-step" id="ageStep">
+                <div class="ag-center">
+                    <h1 class="ag-title" id="ageGateTitle">Are You Over 21?</h1>
+                    <p class="ag-desc" id="agDesc">You can enjoy this website if you&rsquo;re of legal drinking age. Your data won&rsquo;t be stored or shared.</p>
+
+                    <form id="ageGateForm" class="ag-form" novalidate>
+                        <div class="ag-dob">
+                            <input type="text" inputmode="numeric" maxlength="2" id="dobDay"   placeholder="DD"   autocomplete="off" aria-label="Day">
+                            <span class="ag-dob-sep">/</span>
+                            <input type="text" inputmode="numeric" maxlength="2" id="dobMonth" placeholder="MM"   autocomplete="off" aria-label="Month">
+                            <span class="ag-dob-sep">/</span>
+                            <input type="text" inputmode="numeric" maxlength="4" id="dobYear"  placeholder="YYYY" autocomplete="off" aria-label="Year">
+                        </div>
+                        <p class="ag-error" id="ageGateError" aria-live="polite"></p>
+                        <button type="submit" class="ag-verify" id="agVerifyBtn">
+                            <span class="agv-label">Verify Me</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Step 2: Location -->
+            <div class="ag-step" id="locationStep" hidden>
+                <div class="ag-center">
+                    <p class="ag-eyebrow"><span>One Last Look</span></p>
+                    <h1 class="ag-title">WHERE<br>ARE YOU?</h1>
+                    <p class="ag-desc" id="locStatus">Share your location so we can show region-relevant content.</p>
+
+                    <div class="ag-cta-row">
+                        <button type="button" class="ag-verify" id="locBtn">
+                            <span class="agv-label">Share Location</span>
+                        </button>
+                        <button type="button" class="ag-skip" id="locSkip">Skip</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== GLOBAL BEER CAN (fixed position, controlled by GSAP) ========== -->
+    <div class="global-can" id="globalCan">
+        <model-viewer
+            id="globalCanImg"
+            class="global-can-img global-can-3d"
+            src="assets/doje_can_premium.glb"
+            alt="DOJE Beer Can — interactive 3D model"
+            camera-controls
+            touch-action="pan-y"
+            interaction-prompt="none"
+            disable-zoom
+            shadow-intensity="1"
+            exposure="1"
+            environment-image="neutral"
+            camera-orbit="0deg 85deg 2.4m"
+            min-camera-orbit="auto 0deg auto"
+            max-camera-orbit="auto 180deg auto">
+        </model-viewer>
+    </div>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="hero" class="hero-section hero-v2">
+
+        <!-- Topography backdrop — full-bleed, continuously warping -->
+        <div class="hero-topo" id="heroTopo" aria-hidden="true">
+            <svg class="hero-topo-svg" viewBox="0 0 1724 1115"
+                 preserveAspectRatio="xMidYMid slice" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="heroTopoWarp" x="-25%" y="-25%" width="150%" height="150%"
+                            color-interpolation-filters="sRGB">
+                        <feTurbulence id="heroTopoNoise" type="fractalNoise"
+                                      baseFrequency="0.0017 0.0024" numOctaves="2" seed="9"
+                                      result="warpNoise"/>
+                        <feDisplacementMap id="heroTopoDisp" in="SourceGraphic" in2="warpNoise"
+                                           scale="16" xChannelSelector="R" yChannelSelector="G"/>
+                    </filter>
+                </defs>
+                <g class="hero-topo-drift" id="heroTopoDrift">
+                    <g class="hero-topo-warp" id="heroTopoWarpGroup" filter="url(#heroTopoWarp)">
+                        <path class="topo-line" d="M1.20499 362.576L70.8532 378.09L128.493 390.501L219.756 415.324L291.806 433.94L344.643 447.903L363.856 457.211L380.668 469.622L404.684 492.893L416.693 533.229L419.094 559.603L431.103 593.733L447.914 618.556L474.332 638.724L503.152 654.237L536.776 665.097L567.997 674.406L604.022 685.265L632.842 700.779L661.662 720.947L685.679 745.769L697.687 758.181L707.294 773.694V790.76L704.892 812.479L690.482 824.89L666.465 837.301L623.235 849.712L575.202 857.469L534.374 863.675L486.341 865.226H428.701H375.864L323.028 859.021L262.986 849.712L217.355 841.956L162.116 831.096L106.878 821.787L70.8532 815.582L30.0249 807.825L1.20499 801.619M1.20499 410.669L22.8199 415.324L54.0416 418.426L97.2715 423.081L142.903 426.183L188.535 432.389L226.961 440.146L267.789 451.006L294.208 466.519L313.421 485.136L332.634 511.51L351.848 540.986L371.061 568.911L387.873 592.182L407.086 618.556L428.701 644.929L445.512 668.2L474.332 691.471L503.152 706.985L536.776 720.947L567.997 725.601L592.014 733.358L608.826 742.667L611.227 761.283L604.022 773.694L587.211 789.208L565.596 803.171L539.177 815.582L510.357 823.339L488.742 827.993H438.307L404.684 824.89L371.061 818.685L330.233 810.928L282.199 801.619L238.97 793.862L186.133 783.003L126.091 769.04L73.2548 755.078L32.4266 744.218L1.20499 736.461M-6 466.519H37.2299L87.6648 469.622L142.903 474.276L186.133 488.239L238.97 505.304L282.199 536.332L313.421 565.808L337.438 606.144L363.856 648.032L387.873 685.265L404.684 706.985L428.701 720.947L447.914 728.704L474.332 736.461L486.341 741.115L488.742 747.321L486.341 758.181L476.734 764.386L459.922 773.694L443.111 779.9L431.103 783.003L416.693 786.106L409.488 787.657H380.668L354.249 786.106L327.831 783.003L299.011 773.694L272.593 765.937L243.773 756.629L198.141 742.667L159.715 728.704L118.886 711.639L90.0665 697.676L63.6482 685.265L42.0332 677.508L20.4183 669.751L1.20499 663.546M1.20499 821.787L18.0166 823.339L42.0332 831.096L66.0499 843.507L90.0665 859.021L114.083 872.983L145.305 890.049L174.125 902.46L200.543 910.217L224.56 913.319L248.576 924.179L262.986 942.796V964.515L260.584 983.132L248.576 1003.3L241.371 1018.81L219.756 1045.19L202.945 1070.01L186.133 1088.63L164.518 1113.45M1.20499 869.881L18.0166 872.983L34.8283 879.189L66.0499 886.946L85.2632 897.806L106.878 905.562L128.493 921.076L145.305 935.039L159.715 950.553L164.518 967.618L169.321 983.132V1003.3V1018.81L159.715 1037.43L147.706 1057.6L135.698 1074.66L118.886 1093.28L104.476 1113.45M262.986 665.097H250.978L238.97 663.546L229.363 658.892L217.355 654.237L200.543 644.929L186.133 634.069L162.116 618.556L140.501 603.042L118.886 579.771L109.28 567.36L102.075 553.397V544.089L109.28 540.986L123.69 542.537L142.903 548.743L171.723 559.603L198.141 573.565L222.158 590.631L238.97 606.144L255.781 626.312L262.986 638.724L265.388 648.032V654.237V660.443L262.986 665.097ZM380.668 733.358L344.643 736.461L287.003 728.704L250.978 720.947L222.158 711.639L188.535 703.882L152.51 685.265L116.485 671.303L87.6648 654.237L63.6482 638.724L32.4266 618.556L10.8116 603.042L6.00831 590.631V573.565L10.8116 556.5L22.8199 540.986L42.0332 525.472L63.6482 514.612L90.0665 511.51H116.485L150.108 514.612L178.928 525.472L205.346 539.435L236.568 556.5L255.781 576.668L272.593 598.387L279.798 623.21L289.404 644.929L303.814 660.443L323.028 680.611L339.839 694.574L363.856 708.536L375.864 720.947L380.668 725.601V728.704V733.358Z"/>
+                        <path class="topo-line" d="M1728 663.546L1679.97 652.686L1617.52 648.032H1564.69H1519.05L1468.62 635.621L1413.38 615.453L1370.15 593.733L1338.93 570.463L1317.32 553.397L1283.69 505.304L1278.89 472.725V424.632L1293.3 393.604L1329.32 368.782L1382.16 337.754L1437.4 312.932L1495.04 291.212L1564.69 275.699L1617.52 272.596H1660.75H1696.78L1725.6 275.699"/>
+                        <path class="topo-line" d="M1725.6 618.556L1675.16 615.453H1617.52H1538.27L1514.25 612.35L1483.03 604.593L1444.6 593.733L1415.78 582.874L1389.37 565.808L1365.35 548.743L1346.14 527.024L1331.73 508.407L1322.12 491.342V471.174V441.697L1334.13 419.978L1350.94 402.912L1377.36 381.193L1401.37 365.679L1420.59 354.819L1444.6 345.511L1468.62 337.754L1492.64 329.997L1514.25 322.24L1538.27 317.586L1567.09 312.932H1586.3L1605.52 309.829H1629.53H1651.15H1675.16H1699.18H1711.19H1725.6M1725.6 603.042L1679.97 601.49L1648.75 598.387L1617.52 593.733L1588.7 587.528L1555.08 582.874L1531.06 575.117L1502.24 567.36L1468.62 554.949L1439.8 540.986L1425.39 527.024L1401.37 506.856L1389.37 491.342L1382.16 474.276L1379.76 461.865L1377.36 447.903L1379.76 437.043L1384.56 423.081L1396.57 412.221L1406.18 402.912L1422.99 395.156L1439.8 388.95L1456.61 382.744L1475.83 379.642L1492.64 376.539L1507.05 373.436L1519.06 370.333L1535.87 368.782L1545.47 365.679H1559.88L1571.89 362.576L1586.3 359.474H1600.71L1612.72 356.371H1627.13L1639.14 354.819H1651.15L1670.36 353.268H1679.97H1694.38H1708.79H1725.6"/>
+                        <path class="topo-line" d="M716.901 635.621L654.457 646.481H628.039L606.424 640.275L582.408 632.518L560.793 618.556L534.374 599.939L517.563 581.322L483.939 540.986L450.316 497.547L421.496 454.108L399.881 406.015L380.668 348.614L373.463 289.661V227.606L380.668 181.064L397.48 136.074L414.291 106.597L438.308 78.6722L479.136 50.7472L505.554 39.8875L531.973 35.2333L560.793 32.1306H587.211L616.031 35.2333H635.244L659.261 42.9903L695.286 55.4014L724.106 72.4667L755.327 105.046L774.54 129.868L808.164 165.55L853.795 212.092L918.64 258.633L997.895 298.969L1081.95 326.894L1149.2 340.857L1209.24 350.165L1242.86 361.025L1259.68 384.296L1254.87 416.875L1245.27 432.389L1218.85 455.66L1187.63 471.174L1161.21 478.931L1127.58 480.482L1089.16 483.585L1038.72 492.893L988.288 513.061L947.46 534.781L861 578.219L776.942 613.901L716.901 635.621Z"/>
+                        <path class="topo-line" d="M817.769 539.435C798.556 545.64 692.883 587.528 680.875 587.528C668.866 587.528 656.858 590.631 644.85 587.528C632.841 584.425 613.628 576.668 613.628 576.668L582.406 561.154L558.39 542.538L524.767 502.201L495.947 451.006L464.725 388.95L450.315 337.754L445.512 280.353L450.315 241.568L464.725 210.54L483.938 190.372L529.57 156.242L563.193 139.176L599.218 129.868L628.038 123.663H654.456L676.071 126.765L702.49 139.176L724.104 160.896L767.334 216.746L848.991 281.904L935.451 329.997L1024.31 361.025L1103.57 379.642L1146.8 387.399L1163.61 393.604V406.015L1151.6 415.324L1093.96 438.594C1093.96 438.594 971.476 482.033 954.664 485.136C937.852 488.239 836.983 533.229 817.769 539.435Z"/>
+                        <path class="topo-line" d="M762.532 523.921C750.524 528.575 697.687 537.883 671.269 536.332C644.85 534.781 613.629 523.921 613.629 523.921L567.997 488.239C567.997 488.239 522.366 412.221 519.964 393.604C517.562 374.987 510.357 322.24 510.357 305.175C510.357 288.11 522.366 266.39 527.169 253.979C531.972 241.568 584.809 207.437 584.809 207.437C584.809 207.437 604.022 195.026 628.039 195.026C652.055 195.026 652.055 195.026 671.269 199.681C690.482 204.335 702.49 226.054 702.49 226.054C702.49 226.054 736.114 250.876 752.925 271.044C769.737 291.212 808.164 322.24 808.164 322.24C808.164 322.24 853.795 353.268 870.607 359.474C887.418 365.679 966.673 388.95 966.673 388.95C966.673 388.95 985.887 390.501 990.69 402.912C995.493 415.324 983.485 419.978 983.485 419.978C983.485 419.978 923.443 455.66 913.837 460.314C904.23 464.968 841.787 492.893 829.778 497.547C817.77 502.201 774.54 519.267 762.532 523.921Z"/>
+                        <path class="topo-line" d="M628.038 345.511C637.642 334.651 668.866 325.343 668.866 325.343H673.669L680.874 351.717C680.874 351.717 692.882 393.604 707.293 398.258C721.703 402.912 760.128 423.081 762.531 426.183C764.933 429.286 738.515 438.594 712.096 438.594C685.677 438.594 668.866 426.183 661.661 426.183C654.456 426.183 630.439 404.464 628.038 387.399C625.636 370.333 618.433 356.371 628.038 345.511Z"/>
+                        <path class="topo-line" d="M577.603 298.969C587.209 280.353 632.841 252.428 637.644 250.876C642.447 249.325 649.652 249.325 654.456 250.876C659.259 252.428 690.481 277.25 697.686 294.315C704.891 311.381 738.514 342.408 757.727 354.819C776.941 367.231 848.99 399.81 848.99 399.81C848.99 399.81 875.409 415.324 873.007 424.632C870.605 433.94 856.195 449.454 848.99 452.557C841.785 455.66 805.76 474.276 798.555 474.276C791.35 474.276 683.276 478.931 671.267 474.276C659.259 469.622 594.414 447.903 584.808 435.492C575.201 423.08 553.586 393.604 553.586 371.885C553.586 350.165 567.996 317.586 577.603 298.969Z"/>
+                        <path class="topo-line" d="M1728 559.603L1667.96 562.706L1627.13 559.603L1591.11 553.397L1550.28 547.192L1519.06 537.883L1492.64 528.575L1471.02 517.715L1459.01 505.304L1454.21 494.444V485.136V475.828V466.519L1459.01 455.66L1471.02 444.8L1480.63 435.492L1492.64 427.735L1504.65 421.529L1519.06 413.772L1543.07 409.118L1555.08 404.464L1579.1 399.81L1595.91 398.258H1610.32L1622.33 395.156L1641.54 393.604H1672.76H1691.98H1713.59H1728"/>
+                        <path class="topo-line" d="M1725.6 511.51L1607.92 509.958L1579.1 506.856L1555.08 502.201L1547.88 494.444L1543.07 485.136V475.828L1547.88 466.519L1555.08 457.211L1562.29 452.557L1567.09 446.351L1579.1 438.594L1595.91 432.389L1610.32 424.632L1629.53 418.426L1646.34 415.324H1665.56H1679.97L1699.18 416.875H1713.59L1725.6 418.426M1725.6 491.342L1627.13 489.79L1603.11 486.687L1600.71 480.482L1603.11 475.828L1612.72 469.622L1622.33 466.519L1634.34 461.865L1646.34 458.762L1655.95 455.66L1667.96 452.557L1679.97 447.903L1694.38 446.351H1703.98H1715.99H1728"/>
+                        <path class="topo-line" d="M1728 58.5042L1720.8 46.0931L1718.39 33.6819V21.2708L1720.8 8.85972L1723.2 -0.448612"/>
+                        <path class="topo-line" d="M1728 154.69C1728 154.69 1715.99 148.485 1708.79 143.831C1701.58 139.176 1701.58 134.522 1696.78 129.868C1691.98 125.214 1687.17 122.111 1684.77 117.457C1682.37 112.803 1679.97 103.494 1679.97 103.494L1672.76 86.4292L1667.96 67.8125V56.9528V39.8875V24.3736V10.4111V-0.448612M1728 208.989L1696.78 196.578L1672.76 182.615L1653.55 168.653L1639.14 154.69L1627.13 139.176L1615.12 125.214L1603.11 105.046L1595.91 84.8778V56.9528L1598.31 39.8875L1603.11 19.7194L1607.92 -0.448612M1728 260.185L1691.98 252.428L1655.95 236.914L1629.53 224.503L1591.11 199.681L1562.29 173.307L1535.87 136.074L1528.66 109.7V74.0181V39.8875L1533.47 18.1681V-0.448612"/>
+                        <path class="topo-line" d="M680.875 1.10278L805.761 97.2889C805.761 97.2889 865.803 143.831 885.016 157.793C904.23 171.756 947.459 210.54 961.869 218.297C976.279 226.054 1041.12 267.942 1065.14 280.353C1089.16 292.764 1161.21 312.932 1187.63 317.586C1214.04 322.24 1254.87 326.894 1283.69 328.446C1312.51 329.997 1353.34 316.035 1370.15 311.381C1386.96 306.726 1422.99 285.007 1435 272.596C1447.01 260.185 1480.63 207.437 1480.63 207.437C1480.63 207.437 1495.04 162.447 1497.44 139.176C1499.84 115.906 1487.83 72.4667 1487.83 72.4667"/>
+                        <path class="topo-line" d="M1487.83 72.4667L1471.02 38.3361L1454.21 10.4111L1447.01 -2"/>
+                        <path class="topo-line" d="M764.934 -2L844.188 42.9903L889.82 74.0181L935.452 109.7L993.091 156.242L1060.34 212.092L1129.99 253.979L1214.04 271.044H1293.3L1350.94 249.325L1389.37 208.989L1398.97 181.064L1403.78 146.933V109.7L1394.17 67.8125L1379.76 36.7847L1360.55 5.75694L1350.94 -2M911.435 -2L966.673 67.8125C966.673 67.8125 1012.3 108.149 1017.11 112.803C1021.91 117.457 1056.27 147.853 1086.76 167.101C1108.66 180.928 1146.8 199.681 1146.8 199.681L1197.23 212.092C1197.23 212.092 1238.06 218.297 1262.08 216.746C1286.09 215.194 1307.71 204.335 1307.71 204.335L1336.53 181.064L1346.14 146.933V109.7L1329.32 67.8125L1312.51 32.1306L1293.3 1.10278M1014.71 -0.448611L1033.92 32.1306C1033.92 32.1306 1045.93 58.5042 1048.33 63.1583C1050.73 67.8125 1081.95 97.2889 1081.95 97.2889L1113.17 119.008L1151.6 142.279L1192.43 156.242C1192.43 156.242 1211.64 160.896 1221.25 159.344C1230.86 157.793 1235.66 151.587 1240.46 146.933C1245.27 142.279 1247.67 139.176 1250.07 132.971C1252.47 126.765 1252.47 122.111 1254.87 112.803C1257.27 103.494 1254.87 87.9806 1254.87 87.9806C1254.87 87.9806 1254.87 63.1583 1254.87 55.4014C1254.87 47.6444 1240.46 32.1306 1240.46 32.1306L1230.86 18.1681L1211.64 -2"/>
+                        <path class="topo-line" d="M443.112 1.10278L404.686 66.2611C404.686 66.2611 361.456 145.382 359.054 151.587C356.652 157.793 347.046 182.615 347.046 182.615L342.242 196.578L339.841 215.194C339.841 215.194 339.841 232.26 339.841 236.914C339.841 241.568 339.841 261.736 339.841 267.942C339.841 274.147 347.046 302.072 347.046 302.072C347.046 302.072 349.447 329.997 347.046 336.203C344.644 342.408 342.242 347.062 335.037 353.268C327.832 359.474 303.816 365.679 303.816 365.679H229.364L154.913 357.922L68.4529 350.165L-1.19531 340.857"/>
+                        <path class="topo-line" d="M-1.19531 294.315L30.0263 295.867L68.4529 297.418L114.084 300.521L159.716 305.175L190.938 309.829L226.963 311.381C226.963 311.381 267.791 314.483 274.996 314.483C282.201 314.483 294.209 309.829 299.012 300.521C303.816 291.213 303.816 292.764 301.414 283.456C299.012 274.147 299.012 263.288 296.611 257.082C294.209 250.876 291.807 247.774 289.406 238.465C287.004 229.157 289.406 218.297 289.406 218.297L287.004 184.167L291.807 148.485L306.217 111.251L323.029 84.8778L347.046 60.0556L368.661 44.5417L385.472 29.0278L395.079 13.5139"/>
+                        <path class="topo-line" d="M395.078 13.5139L399.881 -0.448612"/>
+                        <path class="topo-line" d="M3.60547 255.531H46.8354L82.8603 261.736L126.09 269.493L166.918 280.353L207.747 288.11L234.165 286.558L238.968 277.25V244.671V210.54V154.69L241.37 117.457L255.78 87.9806L277.395 60.0556L301.412 39.8875L315.822 16.6167V-0.448612"/>
+                        <path class="topo-line" d="M1.20635 208.989L27.6246 219.849L58.8462 229.157L90.0678 235.362H118.888L135.699 232.26L142.904 219.849V198.129V165.55L147.708 132.971V105.046L157.314 78.6722L171.724 56.9528L193.339 41.4389L205.348 25.925V8.85972L200.544 -2M-1.19531 179.512L13.2147 185.718H34.8296H58.8462L73.2562 179.512L82.8629 170.204V159.344L75.6579 146.933V129.868L80.4612 119.008L82.8629 108.149L90.0678 95.7375L106.879 81.775L126.093 67.8125L128.494 55.4014V44.5417L126.093 32.1306L116.486 19.7194L102.076 8.85972L90.0678 -2M6.00967 32.1306L13.2147 47.6444V60.0556V75.5694V95.7375V119.008C13.2147 119.008 15.6163 123.662 20.4196 126.765C25.223 129.868 34.8296 129.868 34.8296 129.868C34.8296 129.868 44.4363 128.317 49.2396 126.765C54.0429 125.214 63.6496 119.008 63.6496 119.008L73.2562 103.494L75.6579 84.8778L73.2562 67.8125L68.4529 60.0556L58.8462 44.5417L44.4363 35.2333C44.4363 35.2333 37.2313 29.0278 32.428 27.4764C27.6246 25.925 22.8213 25.925 20.4196 24.3736C18.018 22.8222 15.6163 21.2708 10.813 21.2708C6.00967 21.2708 3.60801 21.2708 1.20635 22.8222C-1.19531 24.3736 1.20635 29.0278 3.60801 30.5792C6.00967 32.1306 6.00967 32.1306 6.00967 32.1306Z"/>
+                        <path class="topo-line" d="M1.20508 913.319L20.4184 921.076L37.23 935.039L56.4433 955.207L66.05 972.272L68.4516 989.338L66.05 1007.95L63.6483 1026.57L61.2466 1046.74L51.64 1070.01L44.435 1088.63L37.23 1104.14V1113.45M1.20508 976.926L8.41006 986.235L10.8117 998.646L13.2134 1011.06L10.8117 1025.02V1034.33L6.0084 1045.19L1.20508 1052.94"/>
+                        <path class="topo-line" d="M195.738 1111.9L222.157 1090.18L270.19 1048.29L323.026 1012.61L361.453 986.235L409.486 959.861L462.323 925.731L505.553 902.46L536.774 886.946L570.398 877.638L594.414 872.983L620.832 874.535L656.857 880.74L695.284 891.6L719.301 907.114L745.719 922.628L769.736 941.244L788.949 959.861L820.17 976.926L851.392 993.992L892.22 1011.06L913.835 1020.37L921.04 1031.23L925.844 1057.6L921.04 1073.11L906.63 1087.08L897.024 1097.93L882.614 1113.45M260.583 1113.45L282.198 1097.93L306.215 1082.42L337.436 1062.25L368.658 1042.08L407.085 1015.71L440.708 992.44L474.331 967.618L507.954 950.553L529.569 938.142L558.389 933.488L584.808 930.385H613.627L649.652 933.488L685.677 944.347L716.899 958.31L750.522 976.926L781.744 997.094L810.564 1025.02L820.17 1049.84L824.974 1076.22L820.17 1093.28L808.162 1115M349.445 1115L375.863 1097.93L399.88 1082.42L431.101 1066.91L469.528 1049.84L505.553 1031.23L536.774 1012.61L565.594 997.094L604.021 981.581L630.439 976.926L656.857 981.581L683.276 993.992L702.489 1009.51L716.899 1031.23L721.702 1049.84V1065.36L716.899 1079.32L712.096 1093.28L709.694 1107.24L704.891 1113.45M474.331 1115L483.938 1101.04L495.946 1087.08L507.954 1070.01L524.766 1054.5L541.578 1043.64L558.389 1037.43L587.209 1032.78H604.021H625.636L642.447 1037.43L649.652 1043.64L659.259 1052.94L661.661 1065.36V1079.32L659.259 1093.28L654.456 1105.69L649.652 1113.45M529.569 1113.45L546.381 1105.69L565.594 1101.04L572.799 1105.69V1113.45"/>
+                        <path class="topo-line" d="M1247.67 1115L1288.5 1107.24L1334.13 1099.49H1389.37L1456.61 1107.24L1475.83 1115M1108.37 1115L1141.99 1099.49L1187.63 1088.63L1230.86 1079.32L1271.68 1074.66H1312.51H1362.95H1410.98L1475.83 1079.32H1526.26L1550.28 1099.49L1569.49 1115M1024.31 1115L1057.94 1088.63L1093.96 1063.8L1141.99 1052.94H1194.83H1254.87L1312.51 1045.19L1370.15 1037.43L1439.8 1031.23L1487.83 1026.57L1533.47 1037.43L1569.49 1052.94L1600.71 1083.97L1617.52 1110.35M1677.56 1115V1083.97L1670.36 1057.6L1648.74 1037.43L1610.32 1012.61L1526.26 992.44L1439.8 986.235H1353.34L1276.49 995.543L1221.25 1006.4L1180.42 1011.06H1122.78H1069.94L1017.11 1003.3L961.87 992.44L909.033 975.375L865.803 956.758L827.377 931.936L796.155 904.011L767.335 869.881L748.122 834.199L743.318 800.068L752.925 770.592L779.343 741.115L815.368 708.536L858.598 675.957L904.23 635.621L949.861 596.836L990.69 556.5L1017.11 536.332L1048.33 519.267L1074.75 511.51H1103.57L1122.78 514.612L1156.4 520.818L1187.63 531.678L1223.65 548.743L1250.07 567.36L1278.89 587.528L1302.91 617.004L1326.92 632.518L1374.96 654.237L1418.19 666.649L1466.22 675.957L1509.45 683.714L1547.88 689.919L1569.49 691.471L1595.91 696.125L1627.13 697.676L1653.55 696.125H1682.37H1706.38H1728M1725.6 1074.66L1701.58 1045.19L1684.77 1025.02L1653.55 992.44L1627.13 972.272L1576.7 958.31L1502.24 952.104H1425.39H1365.35L1269.28 958.31L1214.04 966.067H1108.37L1029.12 958.31L952.263 941.244L877.811 907.114L827.377 862.124L808.163 831.096V800.068L832.18 759.732L865.803 717.844L897.025 675.957L957.066 627.864L997.895 603.042L1038.72 582.874L1081.95 564.257L1113.17 556.5L1139.59 559.603L1166.01 564.257L1187.63 585.976L1209.24 610.799L1230.86 632.518L1264.48 655.789L1302.91 679.06L1353.34 697.676L1425.39 714.742L1487.83 720.947L1533.47 725.601L1588.7 730.256L1639.14 736.461L1677.56 742.667L1706.38 745.769H1728M1728 986.235L1701.58 958.31L1648.74 931.936L1576.7 921.076L1487.83 907.114H1410.98L1343.73 914.871L1247.67 921.076H1081.95L1024.31 914.871L978.681 904.011L921.041 869.881L897.025 838.853L877.811 818.685V792.311V753.526L897.025 730.256L921.041 697.676L961.87 666.649L997.895 644.929L1048.33 632.518L1069.94 627.864H1093.96L1113.17 632.518L1149.2 644.929L1202.04 675.957L1250.07 705.433L1269.28 720.947L1302.91 730.256L1360.55 739.564L1435 747.321L1502.24 756.629L1569.49 761.283L1639.14 769.04L1689.57 776.797L1725.6 783.003M1728 925.731L1701.58 907.114L1658.35 894.703L1600.71 879.189L1550.28 876.086H1480.63L1389.37 879.189L1283.69 890.049L1221.25 899.357H1149.2L1050.73 882.292L988.288 848.161L957.066 821.788L949.861 783.003V756.629L961.87 736.461L988.288 720.947L1017.11 705.433L1057.94 702.331L1101.17 705.433L1122.78 714.742L1141.99 730.256L1161.21 747.321L1202.04 770.592L1269.28 783.003L1353.34 787.657L1444.6 793.862L1526.26 796.965L1569.49 800.068L1631.93 809.376L1670.36 812.479L1706.38 823.339L1725.6 827.993M1725.6 907.114L1706.38 890.049L1670.36 871.432L1639.14 859.021L1605.52 851.264L1564.69 845.058L1555.08 841.956L1564.69 838.853H1588.7L1617.52 841.956L1658.35 848.161L1689.57 857.469L1728 869.881M1379.76 845.058C1372.55 840.404 1365.35 838.853 1365.35 838.853H1334.13L1290.9 831.096L1257.27 820.236L1221.25 800.068L1187.63 779.9L1151.6 761.283L1113.17 741.115L1079.55 734.91H1043.53L1017.11 747.321L1000.3 764.386V787.657L1017.11 803.171L1024.31 812.479L1043.53 821.788L1057.94 831.096L1079.55 843.507L1108.37 852.815L1144.4 860.572L1175.62 865.226H1202.04H1233.26H1264.48L1290.9 862.124H1314.91L1334.13 857.469L1353.34 852.815C1353.34 852.815 1386.96 849.713 1379.76 845.058Z"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+        <!-- Navigation — lives inside the hero, so it scrolls away naturally -->
+        <nav class="hero-nav" id="heroNav" aria-label="Primary">
+            <ul class="hero-nav-pill hero-nav-pill--left">
+                <li><a href="index.html" class="is-active" aria-current="page">Home</a></li>
+                <li><a href="about.html">Doje&rsquo;s Story</a></li>
+            </ul>
+
+            <a href="#hero" class="hero-nav-logo" aria-label="DOJE &mdash; home">
+                <img src="assets/doje-logo-nav.png" alt="DOJE" width="454" height="149">
+            </a>
+
+            <ul class="hero-nav-pill hero-nav-pill--right">
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#hero">Shop</a></li>
+            </ul>
+        </nav>
+
+        <!-- Can / Bottle format toggle -->
+        <div class="hero-format" id="heroFormat" role="group" aria-label="Choose format">
+            <span class="hero-format-thumb" aria-hidden="true"></span>
+            <a class="hero-format-opt is-active" href="index.html" data-format="can" aria-current="page">
+                <img src="assets/hero/icon-can.png" alt="Can" width="100" height="100">
+            </a>
+            <a class="hero-format-opt" href="bottle.html" data-format="bottle">
+                <img src="assets/hero/icon-bottle.png" alt="Bottle" width="100" height="100">
+            </a>
+        </div>
+
+        <!-- Distorted DOJE wordmark — sits behind the GLB can -->
+        <img class="hero-doje-text" id="heroDojeText" src="assets/hero/doje-distorted-text.png"
+             alt="" aria-hidden="true" width="3648" height="971">
+
+        <!-- Heading -->
+        <h1 class="hero-rise" id="heroTitle">Rise Beyond.</h1>
+
+        <!-- Decorative preview card -->
+        <a class="hero-gallery" id="heroGallery" href="#experience"
+           aria-label="DOJE Strong &mdash; explore the experience">
+            <img src="assets/hero/can-gallery.png"
+                 alt="A DOJE Strong can resting among thorn scrub and yellow blooms"
+                 width="268" height="210">
+        </a>
+    </section>
+
+    <!-- ========== 01 — ROOTED IN ASSAM ========== -->
+    <section id="rooted" class="ria" aria-labelledby="riaHeading">
+        <div class="ria-stage" id="riaStage">
+
+            <!-- Sphere sits behind the mountain; only its upper half shows -->
+            <div class="ria-sphere" id="riaSphere" aria-hidden="true">
+                <svg viewBox="0 0 735 711" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="367.5" cy="355.5" rx="367.5" ry="355.5" fill="#AE352F" fill-opacity="0.9"/>
+                </svg>
+            </div>
+
+            <!-- Mountain rides up from below the fold -->
+            <div class="ria-mountain" id="riaMountain" aria-hidden="true">
+                <img src="assets/rooted/mountain.webp" alt="" width="2560" height="1124">
+            </div>
+
+            <!-- The rule is part of the section's initial state (see the
+                 "before can" reference); the label text arrives with the copy. -->
+            <p class="ria-label">
+                <span class="ria-label-text" id="riaLabel">01 - The Source</span>
+                <span class="ria-rule" aria-hidden="true"></span>
+            </p>
+
+            <h2 class="ria-heading" id="riaHeading">Rooted<br>in Assam</h2>
+
+            <p class="ria-lead" id="riaLead">Born from the spirit<br>of Assam, where<br>tradition meets bold<br>ambition.</p>
+
+            <p class="ria-note" id="riaNote">Home to lush tea<br>gardens,<br>mist-covered hills,<br>and bold ideas.</p>
+
+            <p class="ria-quote" id="riaQuote">Every sip carries<br>a piece of the<br>Northeast.</p>
+        </div>
+    </section>
+
+    <!-- ========== 02 — THE EAGLE'S SPIRIT ========== -->
+    <section id="eagle" class="tes" aria-labelledby="tesHeading">
+        <div class="tes-stage" id="tesStage">
+
+            <!-- Decorative eagles, bled off the corners -->
+            <img class="tes-deco tes-deco-tr" src="assets/eagle/eagle-top-right.webp"
+                 alt="" aria-hidden="true" width="560" height="983">
+            <img class="tes-deco tes-deco-bl" src="assets/eagle/eagle-bottom-left.webp"
+                 alt="" aria-hidden="true" width="720" height="703">
+
+            <!-- The eagle the can lands in front of -->
+            <img class="tes-eagle" id="tesEagle" src="assets/eagle/eagle-middle.webp"
+                 alt="" aria-hidden="true" width="1100" height="1165">
+
+            <!-- The strip: one bar until the can reaches it, then two halves -->
+            <div class="tes-strip" id="tesStrip" aria-hidden="true">
+                <span class="tes-strip-half tes-strip-half--l" id="tesStripL"></span>
+                <span class="tes-strip-half tes-strip-half--r" id="tesStripR"></span>
+            </div>
+
+            <span class="tes-feather tes-feather--1" aria-hidden="true">
+                <img src="assets/eagle/feather.svg" alt="" width="98" height="102">
+            </span>
+            <span class="tes-feather tes-feather--2" aria-hidden="true">
+                <img src="assets/eagle/feather.svg" alt="" width="98" height="102">
+            </span>
+
+            <h2 class="tes-heading" id="tesHeading">The Eagle&rsquo;s<br>Spirit</h2>
+
+            <p class="tes-label">
+                <span class="tes-label-text" id="tesLabel">02 - The Symbol</span>
+                <span class="tes-rule" aria-hidden="true"></span>
+            </p>
+
+            <p class="tes-quote" id="tesQuote">Every feather<br>represents<br>the pursuit<br>of something<br>greater.</p>
+
+            <p class="tes-desc" id="tesDesc">A symbol of freedom, strength, and ambition. Every detail on the can reflects the spirit that defines DOJE.</p>
+
+            <div class="tes-card tes-card--l" id="tesWings">
+                <span class="tes-card-title">The Wings</span>
+                <span class="tes-card-body">A symbol of freedom, possibility, and ambition.</span>
+            </div>
+
+            <div class="tes-card tes-card--r" id="tesGaze">
+                <span class="tes-card-title">The Gaze</span>
+                <span class="tes-card-body">Focused, confident, forward-looking.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 03 — STRONG YET SMOOTH ========== -->
+    <section id="smooth" class="sys" aria-labelledby="sysHeading">
+        <div class="sys-stage" id="sysStage">
+
+            <!-- Carbonation. Bubbles are generated in js/smooth.js so the
+                 markup stays light and the field can be randomised. -->
+            <div class="sys-bubbles" id="sysBubbles" aria-hidden="true"></div>
+
+            <!-- Poured-beer foam and the torn gold edge, glued to the bottom -->
+            <div class="sys-fizz" id="sysFizz" aria-hidden="true">
+                <img src="assets/smooth/fizz-bottom.svg" alt="" width="1728" height="479">
+            </div>
+
+            <p class="sys-label">
+                <span class="sys-label-text" id="sysLabel">03 - The Experience</span>
+                <span class="sys-rule" aria-hidden="true"></span>
+            </p>
+
+            <h2 class="sys-heading" id="sysHeading">Strong Yet<br>Smooth</h2>
+
+            <div class="sys-abv" id="sysAbv">
+                <span class="sys-abv-disc">8%</span>
+                <span class="sys-abv-word">A.B.V</span>
+            </div>
+
+            <div class="sys-served" id="sysServed">
+                <span class="sys-served-label">Best Served</span>
+                <span class="sys-served-value">4 - 8&deg; C</span>
+            </div>
+
+            <p class="sys-copy" id="sysCopy">Full flavour.<br>Smooth finish.<br>Pure satisfaction.</p>
+        </div>
+    </section>
+
+    <!-- ========== 04 — INFINITE SLIDING CANS ========== -->
+    <section id="slider" class="cis" aria-label="DOJE — more than a label">
+        <div class="cis-stage" id="cisStage">
+
+            <!-- Decorative concentric rings, centred behind the row -->
+            <div class="cis-rings" aria-hidden="true">
+                <img class="cis-ring cis-ring--l" src="assets/slider/large-circle.svg"  alt="" width="1035" height="1019">
+                <img class="cis-ring cis-ring--m" src="assets/slider/medium-circle.svg" alt="" width="846"  height="830">
+                <img class="cis-ring cis-ring--s" src="assets/slider/small-circle.svg"  alt="" width="643"  height="620">
+            </div>
+
+            <!-- Sliding row. Nine <model-viewer> cans of the same GLB the
+                 travelling can uses, so the centre slot hand-over is
+                 indistinguishable. Generated in js/slider.js so the track can
+                 be positioned by formula rather than hand-placed. -->
+            <div class="cis-track" id="cisTrack" aria-hidden="true"></div>
+
+            <p class="cis-heading" id="cisHeading">More than a label.</p>
+        </div>
+    </section>
+
+    <!-- ========== 05 — EXP. (expanding imagery) ==========
+         Replaces the former "Ready to Go" sticky card. Big EXP typography
+         with the rock/can plate sitting inside the word; on scroll the plate
+         scales up to fill the viewport while the E and XP. part to the edges.
+         Behaviour: js/exp.js (GSAP ScrollTrigger, scrubbed, transform-only). -->
+    <section class="exp" id="experience" aria-label="DOJE — Experience Beyond">
+        <div class="exp-track" id="expTrack">
+            <div class="exp-pin" id="expPin">
+
+                <div class="exp-row">
+                    <span class="exp-letter exp-letter--l" id="expE" aria-hidden="true">E</span>
+
+                    <figure class="exp-plate" id="expPlate">
+                        <img src="assets/exp/exp-rock-can.jpg"
+                             alt="A DOJE Strong can resting on dark Assam rock"
+                             decoding="async" loading="lazy">
+                    </figure>
+
+                    <span class="exp-letter exp-letter--r" id="expXP" aria-hidden="true">XP.</span>
+                </div>
+
+                <p class="exp-beyond" id="expBeyond">BEYOND</p>
+
+                <span class="exp-sr">Exp. Beyond</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 06 — CTA ==========
+         Sits between the EXP stage and the gold footer. Plain white, so it
+         reads as a continuation of the EXP section rather than a cut. -->
+    <section class="dcta" id="findDoje" aria-labelledby="dctaTitle">
+        <h2 class="dcta-line" id="dctaTitle">Ready to Rise<br>Above Ordinary?</h2>
+        <a class="dcta-action" href="contact.html">[Find DOJE]</a>
+    </section>
+
+    <!-- ========== FOOTER (careers-style, shared design) ========== -->
+    <footer class="cr-footer" id="crFooter">
+        <nav class="cr-footer-nav" aria-label="Footer navigation">
+            <a href="index.html" class="is-active" aria-current="page">Home</a>
+            <a href="careers.html">Careers</a>
+            <a href="#">Certifications</a>
+            <a href="about.html">DOJE's Story</a>
+            <a href="#experience">Experience</a>
+            <a href="contact.html">Contact</a>
+            <a href="news.html">News</a>
+        </nav>
+        <div class="cr-footer-logo" aria-label="DOJE">
+            DOJE<span class="cr-footer-dot" aria-hidden="true"></span><span class="cr-footer-reg" aria-hidden="true">®</span>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <!-- Age Gate — runs first to lock site until verified -->
+    <script src="js/age-gate.js?v=8"></script>
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <!-- Splitting.js -->
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+    <!-- Main Script -->
+    <script src="script.js?v=38"></script>
+    <!-- Hero section (redesign) -->
+    <script src="js/hero.js?v=5"></script>
+    <!-- 01 — Rooted in Assam (redesign) -->
+    <script src="js/rooted.js?v=15"></script>
+    <!-- 02 — The Eagle's Spirit (redesign) -->
+    <script src="js/eagle.js?v=6"></script>
+    <!-- 03 — Strong Yet Smooth (redesign) -->
+    <script src="js/smooth.js?v=4"></script>
+    <!-- 04 — Infinite sliding cans (redesign) -->
+    <script src="js/slider.js?v=5"></script>
+    <!-- 05 — EXP. expanding imagery (redesign) -->
+    <script src="js/exp.js?v=2"></script>
+</body>
+</html>
+

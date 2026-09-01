@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOJE | News — Stories from the Brewery</title>
+    <meta name="description" content="News from DOJE — stories from the brewery, product launches, behind-the-scenes moments, events, and everything that shapes the DOJE experience.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Hero-critical asset -->
+    <link rel="preload" as="image" href="assets/news-page assets/hero-image.jpg">
+
+    <link rel="stylesheet" href="news.css?v=2">
+</head>
+<body class="nw">
+
+    <!-- ========== NAV (shared careers-style design) ========== -->
+    <nav class="cr-nav" id="nwNav">
+        <ul class="cr-nav-pill cr-nav-pill--left">
+            <li><a href="index.html">Can</a></li>
+            <li><a href="bottle.html">Bottle</a></li>
+            <li><a href="about.html">Doje's Story</a></li>
+        </ul>
+
+        <a href="index.html#hero" class="cr-nav-logo" aria-label="DOJE — home">
+            <img src="assets/doje-logo-nav.png" alt="DOJE" width="454" height="149">
+        </a>
+
+        <ul class="cr-nav-pill cr-nav-pill--right">
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#hero" class="cr-nav-shop">Shop</a></li>
+        </ul>
+    </nav>
+
+    <main id="nwMain">
+
+        <!-- ================= HERO ================= -->
+        <header class="nw-hero" id="nwHero">
+            <div class="nw-hero-media" id="nwHeroMedia">
+                <img src="assets/news-page assets/hero-image.jpg" alt="Friends toasting with DOJE beers at a festival" fetchpriority="high">
+            </div>
+            <span class="nw-hero-overlay" aria-hidden="true"></span>
+            <div class="nw-hero-content">
+                <h1 class="nw-hero-title">NEWS</h1>
+                <p class="nw-hero-sub">
+                    Stories from the brewery, product launches, behind-the-scenes moments,
+                    events, and everything that shapes the DOJE experience.
+                </p>
+            </div>
+        </header>
+
+        <!-- ================= BLOG GRID ================= -->
+        <section class="nw-grid" id="stories" aria-label="Latest news">
+            <a class="nw-card" data-card href="#">
+                <div class="nw-card-media"><img src="assets/news-page assets/blog-1.jpg" alt="Oak barrels ageing in the DOJE brewery" loading="lazy"></div>
+                <div class="nw-card-meta">
+                    <span class="nw-tag">Brewery</span>
+                    <span class="nw-date">01/02/2026</span>
+                </div>
+                <h3 class="nw-card-title">Inside the Brewery: Where Every Batch Begins</h3>
+            </a>
+
+            <a class="nw-card" data-card href="#">
+                <div class="nw-card-media"><img src="assets/news-page assets/blog-2.jpg" alt="A freshly poured mug of DOJE" loading="lazy"></div>
+                <div class="nw-card-meta">
+                    <span class="nw-tag">Product</span>
+                    <span class="nw-date">01/02/2026</span>
+                </div>
+                <h3 class="nw-card-title">Introducing Our Latest Brew Crafted for Every Celebration</h3>
+            </a>
+
+            <a class="nw-card" data-card href="#">
+                <div class="nw-card-media"><img src="assets/news-page assets/blog-3.jpg" alt="DOJE being poured from the tap" loading="lazy"></div>
+                <div class="nw-card-meta">
+                    <span class="nw-tag">Events</span>
+                    <span class="nw-date">01/02/2026</span>
+                </div>
+                <h3 class="nw-card-title">DOJE at Local Festivals: Sharing Great Beer &amp; Great Moments</h3>
+            </a>
+
+            <a class="nw-card" data-card href="#">
+                <div class="nw-card-media"><img src="assets/news-page assets/blog-4.jpg" alt="A glass of DOJE against warm bokeh lights" loading="lazy"></div>
+                <div class="nw-card-meta">
+                    <span class="nw-tag">Process</span>
+                    <span class="nw-date">01/02/2026</span>
+                </div>
+                <h3 class="nw-card-title">Five Steps Behind Every Perfect Pour</h3>
+            </a>
+
+            <a class="nw-card" data-card href="#">
+                <div class="nw-card-media"><img src="assets/news-page assets/blog-5.jpg" alt="Two glasses of DOJE side by side" loading="lazy"></div>
+                <div class="nw-card-meta">
+                    <span class="nw-tag">Community</span>
+                    <span class="nw-date">01/02/2026</span>
+                </div>
+                <h3 class="nw-card-title">Celebrating the People Who Make DOJE Possible</h3>
+            </a>
+
+            <a class="nw-card" data-card href="#">
+                <div class="nw-card-media"><img src="assets/news-page assets/blog-6.jpg" alt="A tray of freshly canned DOJE" loading="lazy"></div>
+                <div class="nw-card-meta">
+                    <span class="nw-tag">Launch</span>
+                    <span class="nw-date">01/02/2026</span>
+                </div>
+                <h3 class="nw-card-title">A New Chapter Begins for the DOJE Brand</h3>
+            </a>
+        </section>
+    </main>
+
+    <!-- ================= FOOTER (shared global design) ================= -->
+    <footer class="cr-footer" id="nwFooter">
+        <nav class="cr-footer-nav" aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="careers.html">Careers</a>
+            <a href="#">Certifications</a>
+            <a href="about.html">DOJE's Story</a>
+            <a href="index.html#experience">Experience</a>
+            <a href="contact.html">Contact</a>
+            <a href="news.html" class="is-active" aria-current="page">News</a>
+        </nav>
+        <div class="cr-footer-logo" aria-label="DOJE">
+            DOJE<span class="cr-footer-dot" aria-hidden="true"></span><span class="cr-footer-reg" aria-hidden="true">®</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="news.js?v=2"></script>
+</body>
+</html>

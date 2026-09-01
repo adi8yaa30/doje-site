@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOJE Bottle | Premium Strong Beer — Rooted in Assam, Rising Beyond</title>
+    <meta name="description" content="DOJE is brewed in Assam. Strong yet smooth, DOJE celebrates those who rise higher and live with unstoppable energy.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&family=Quattrocento:wght@400;700&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Lexend+Giga:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Share+Tech+Mono&family=Orbitron:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@400;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=supreme@400,500,700,800,900&f[]=satoshi@300,400,500,700,900&f[]=panchang@300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <!-- Splitting.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css?v=57">
+</head>
+<body class="age-gate-locked">
+
+    <!-- ========== AGE GATE ========== -->
+    <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+        <div class="ag-media" aria-hidden="true">
+            <video class="ag-video" id="ageGateVideo" autoplay muted playsinline preload="auto">
+                <source src="age_gate_vid.mp4" type="video/mp4">
+            </video>
+            <div class="ag-media-overlay"></div>
+        </div>
+        <div class="ag-inner">
+            <div class="ag-top">
+                <div class="ag-mark">DOJE</div>
+            </div>
+
+            <div class="ag-bottom">
+                <div class="ag-bottom-left">
+                    <div class="ag-step" id="ageStep">
+                        <p class="ag-eyebrow">Age Verification</p>
+                        <h1 class="ag-title" id="ageGateTitle">Verify your<br>age to enter</h1>
+                        <p class="ag-desc">DOJE is brewed for those of legal drinking age. Please enter your date of birth.</p>
+
+                        <form id="ageGateForm" class="ag-form" novalidate>
+                            <div class="ag-dob">
+                                <input type="text" inputmode="numeric" maxlength="2" id="dobDay" placeholder="DD" autocomplete="off" aria-label="Day">
+                                <span>/</span>
+                                <input type="text" inputmode="numeric" maxlength="2" id="dobMonth" placeholder="MM" autocomplete="off" aria-label="Month">
+                                <span>/</span>
+                                <input type="text" inputmode="numeric" maxlength="4" id="dobYear" placeholder="YYYY" autocomplete="off" aria-label="Year">
+                            </div>
+                            <p class="ag-error" id="ageGateError" aria-live="polite"></p>
+                            <div class="ag-cta-row">
+                                <button type="submit" class="ag-btn ag-btn-primary">
+                                    <span>Enter Site</span>
+                                    <span class="ag-btn-arrow" aria-hidden="true">→</span>
+                                </button>
+                                <span class="ag-btn ag-btn-ghost">Drink Responsibly</span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="ag-step" id="locationStep" hidden>
+                        <p class="ag-eyebrow">Location Access</p>
+                        <h1 class="ag-title">Where are you<br>from?</h1>
+                        <p class="ag-desc" id="locStatus">Share your location so we can show region-relevant content.</p>
+
+                        <div class="ag-cta-row">
+                            <button type="button" class="ag-btn ag-btn-primary" id="locBtn">
+                                <span>Share Location</span>
+                                <span class="ag-btn-arrow" aria-hidden="true">→</span>
+                            </button>
+                            <button type="button" class="ag-btn ag-btn-ghost" id="locSkip">Skip</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== NAVBAR ========== -->
+    <!-- ========== SITE SCROLL-COMPLETION LOADING BAR ========== -->
+    <div class="site-progress" id="siteProgress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="site-progress-track"></div>
+        <div class="site-progress-fill" id="siteProgressFill"></div>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <!-- Left pill group -->
+            <ul class="nav-pills nav-pills-left">
+                <li><a href="index.html" class="nav-pill">Can</a></li>
+                <li><a href="bottle.html" class="nav-pill nav-pill-active">Bottle</a></li>
+                <li><a href="about.html" class="nav-pill">About</a></li>
+            </ul>
+
+            <!-- Center brand — target for the hero wordmark scroll morph -->
+            <a href="#" class="brand-logo" id="brandLogo" aria-label="DOJE">
+                <img src="assets/doje-logo.PNG" alt="DOJE" class="brand-logo-img">
+            </a>
+
+            <!-- Right pill group -->
+            <ul class="nav-pills nav-pills-right">
+                <li><a href="#experience" class="nav-pill">Experience</a></li>
+                <li><a href="#hero" class="nav-pill nav-pill-solid">Shop</a></li>
+            </ul>
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-links" id="navLinks" aria-hidden="true">
+                <li><a href="index.html">Can</a></li>
+                <li><a href="bottle.html">Bottle</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#story">Story</a></li>
+                <li><a href="#experience">Experience</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== GLOBAL BEER CAN (fixed position, controlled by GSAP) ========== -->
+    <div class="global-can" id="globalCan">
+        <img src="assets/DOJE-BOTTLE.png" alt="DOJE Beer Bottle" class="global-can-img global-bottle-img" id="globalCanImg">
+    </div>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="hero" class="hero-section">
+        <!-- Parallax Gradient Overlays -->
+        <div class="hero-gradient-top"></div>
+        <div class="hero-gradient-bottom"></div>
+        <div class="hero-vignette"></div>
+
+
+        <!-- ===== PROMO PILL (bottom-right) ===== -->
+        <a href="#about" class="hero-promo-pill">
+            <span class="hpp-dot"></span>
+            <span>Rise Above Ordinary</span>
+        </a>
+
+        <!-- Hero wordmark — brand as giant backdrop, can as protagonist -->
+        <h1 class="hero-wordmark" id="heroWordmark" aria-label="DOJE">
+            <span aria-hidden="true">D</span>
+            <span aria-hidden="true">O</span>
+            <span aria-hidden="true">J</span>
+            <span aria-hidden="true">E</span>
+        </h1>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" id="scrollIndicator">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ========== PINNED SCROLL ZONE ========== -->
+    <section id="pinnedZone" class="pinned-zone">
+        <div class="pinned-wrapper" id="pinnedWrapper">
+            <!-- Background Environment Layers -->
+            <div class="env-layer env-mountains" id="envMountains"></div>
+            <div class="env-layer env-golden-sky" id="envGoldenSky"></div>
+            <div class="env-layer env-misty" id="envMisty"></div>
+
+            <!-- Particle Canvas -->
+            <canvas class="particles-canvas" id="particlesCanvas"></canvas>
+
+            <!-- ===== ORBIT RINGS around can (visible across all phases) ===== -->
+            <div class="orbit-rings" id="orbitRings">
+                <div class="orbit-ring orbit-ring-1"></div>
+                <div class="orbit-ring orbit-ring-2"></div>
+                <div class="orbit-ring orbit-ring-3"></div>
+            </div>
+
+            <!-- ===== FLOATING GOLDEN PARTICLES (decorative dots) ===== -->
+            <div class="pin-floating-dots" id="pinFloatingDots">
+                <span class="floating-dot fd-1"></span>
+                <span class="floating-dot fd-2"></span>
+                <span class="floating-dot fd-3"></span>
+                <span class="floating-dot fd-4"></span>
+                <span class="floating-dot fd-5"></span>
+                <span class="floating-dot fd-6"></span>
+                <span class="floating-dot fd-7"></span>
+                <span class="floating-dot fd-8"></span>
+            </div>
+
+            <!-- Beer can is now a global fixed element above -->
+
+            <!-- ===== SECTION 1: Rooted in Assam ===== -->
+            <div class="pin-content pin-content-1" id="pinContent1">
+                <span class="pin-label" id="pinLabel1">01 — The Source</span>
+                <div class="pin-accent-line" id="pinLine1"></div>
+                <h2 class="pin-heading" data-splitting>Rooted in Assam</h2>
+                <p class="pin-text" id="pinText1">Where strength, spirit, and culture rise together. Crafted with precision, inspired by the bold soul of the Northeast.</p>
+                <div class="pin-stats" id="pinStats1">
+                    <div class="pin-stat">
+                        <span class="pin-stat-number">100%</span>
+                        <span class="pin-stat-label">Assam Brewed</span>
+                    </div>
+                    <div class="pin-stat-divider"></div>
+                    <div class="pin-stat">
+                        <span class="pin-stat-number">Est. 2024</span>
+                        <span class="pin-stat-label">Founded</span>
+                    </div>
+                </div>
+                <p class="pin-quote" id="pinQuote1">"Born from the land that never backs down."</p>
+            </div>
+
+            <!-- Section 1 Decorative Elements -->
+            <div class="pin-deco pin-deco-1" id="pinDeco1">
+                <!-- Coordinates badge -->
+                <div class="deco-coords" id="decoCoords1">
+                    <span class="coords-icon">◎</span>
+                    <span class="coords-text">26.1445° N, 91.7362° E</span>
+                </div>
+                <!-- Ingredient floating tags -->
+                <div class="deco-tags" id="decoTags1">
+                    <span class="deco-tag deco-tag-1">Malt</span>
+                    <span class="deco-tag deco-tag-2">Hops</span>
+                    <span class="deco-tag deco-tag-3">Assam Water</span>
+                    <span class="deco-tag deco-tag-4">Yeast</span>
+                </div>
+                <!-- Assam mountain landscape with pine trees -->
+                <svg class="deco-topo" id="decoTopo1" viewBox="0 0 500 300" fill="none">
+                    <!-- Mountain peaks -->
+                    <path d="M0 280 L60 160 L95 210 L140 120 L180 190 L220 100 L260 170 L310 80 L350 150 L390 110 L430 180 L470 130 L500 200 L500 300 L0 300Z" fill="rgba(212,175,55,0.06)" stroke="rgba(212,175,55,0.25)" stroke-width="1.5"/>
+                    <!-- Background ridge -->
+                    <path d="M0 260 L40 200 L80 230 L130 170 L170 210 L210 150 L260 200 L300 140 L350 190 L400 160 L440 210 L500 180 L500 300 L0 300Z" fill="rgba(212,175,55,0.03)" stroke="rgba(212,175,55,0.12)" stroke-width="1"/>
+                    <!-- Pine trees silhouette -->
+                    <path d="M30 280 L35 255 L28 260 L35 240 L27 245 L35 225 L25 230 L35 210 L40 210 L50 230 L40 225 L50 245 L42 240 L50 260 L43 255 L45 280Z" fill="rgba(212,175,55,0.15)"/>
+                    <path d="M70 280 L75 260 L69 264 L76 248 L68 252 L76 235 L80 235 L88 252 L80 248 L88 264 L82 260 L84 280Z" fill="rgba(212,175,55,0.12)"/>
+                    <path d="M440 280 L445 250 L438 255 L446 232 L436 238 L446 215 L450 215 L460 238 L452 232 L460 255 L454 250 L456 280Z" fill="rgba(212,175,55,0.13)"/>
+                    <path d="M470 280 L474 262 L469 265 L475 250 L468 253 L475 238 L479 238 L486 253 L479 250 L486 265 L481 262 L483 280Z" fill="rgba(212,175,55,0.10)"/>
+                    <!-- Mist layers -->
+                    <ellipse cx="250" cy="260" rx="220" ry="12" fill="rgba(212,175,55,0.04)"/>
+                    <ellipse cx="200" cy="275" rx="180" ry="8" fill="rgba(212,175,55,0.03)"/>
+                    <!-- Tea leaf accent -->
+                    <path d="M380 200 Q400 180 410 200 Q400 190 380 200Z" fill="rgba(212,175,55,0.18)" stroke="rgba(212,175,55,0.25)" stroke-width="0.8"/>
+                    <path d="M395 195 L395 215" stroke="rgba(212,175,55,0.15)" stroke-width="0.8"/>
+                </svg>
+                <!-- Vertical dashed connector -->
+                <div class="deco-vline" id="decoVline1"></div>
+            </div>
+
+            <!-- ===== SECTION 2: The Eagle's Spirit ===== -->
+            <div class="pin-content pin-content-2" id="pinContent2">
+                <span class="pin-label" id="pinLabel2">02 — The Symbol</span>
+                <div class="pin-accent-line" id="pinLine2"></div>
+                <h2 class="pin-heading" data-splitting>The Eagle's Spirit</h2>
+                <p class="pin-text" id="pinText2">We represent youth, power, and freedom. The eagle does not simply fly — it dominates the sky. Every sip carries that relentless energy.</p>
+                <div class="pin-keywords" id="pinKeywords2">
+                    <span class="pin-keyword">Power</span>
+                    <span class="pin-keyword-dot">·</span>
+                    <span class="pin-keyword">Freedom</span>
+                    <span class="pin-keyword-dot">·</span>
+                    <span class="pin-keyword">Dominance</span>
+                </div>
+                <p class="pin-quote" id="pinQuote2">"Rise higher. Fly further. Fear nothing."</p>
+            </div>
+
+            <!-- Section 2 Decorative Elements -->
+            <div class="pin-deco pin-deco-2" id="pinDeco2">
+                <!-- Eagle silhouette watermark -->
+                <svg class="deco-eagle" id="decoEagle2" viewBox="0 0 300 280" fill="none">
+                    <!-- Majestic eagle with spread wings -->
+                    <!-- Body -->
+                    <path d="M150 85 C145 95 140 115 142 135 C143 150 148 165 150 175 C152 165 157 150 158 135 C160 115 155 95 150 85Z" fill="rgba(212,175,55,0.08)" stroke="rgba(212,175,55,0.3)" stroke-width="1.2"/>
+                    <!-- Head -->
+                    <path d="M150 85 C146 78 143 68 145 58 C147 50 150 45 153 42 C155 45 158 52 158 60 C158 70 155 78 150 85Z" fill="rgba(212,175,55,0.10)" stroke="rgba(212,175,55,0.35)" stroke-width="1.2"/>
+                    <!-- Beak -->
+                    <path d="M153 42 L162 38 L155 45Z" fill="rgba(212,175,55,0.25)" stroke="rgba(212,175,55,0.4)" stroke-width="1"/>
+                    <!-- Left wing -->
+                    <path d="M142 105 C125 95 100 80 70 72 C50 67 28 68 10 75 C30 78 48 82 60 90 C72 98 85 108 95 118 C105 128 115 135 125 140 C130 138 138 130 142 120Z" fill="rgba(212,175,55,0.06)" stroke="rgba(212,175,55,0.3)" stroke-width="1.5"/>
+                    <!-- Left wing feathers -->
+                    <path d="M10 75 C25 72 40 75 55 85" stroke="rgba(212,175,55,0.2)" stroke-width="0.8" fill="none"/>
+                    <path d="M20 70 C38 68 55 75 68 88" stroke="rgba(212,175,55,0.18)" stroke-width="0.8" fill="none"/>
+                    <path d="M35 65 C52 65 68 72 82 90" stroke="rgba(212,175,55,0.15)" stroke-width="0.8" fill="none"/>
+                    <!-- Right wing -->
+                    <path d="M158 105 C175 95 200 80 230 72 C250 67 272 68 290 75 C270 78 252 82 240 90 C228 98 215 108 205 118 C195 128 185 135 175 140 C170 138 162 130 158 120Z" fill="rgba(212,175,55,0.06)" stroke="rgba(212,175,55,0.3)" stroke-width="1.5"/>
+                    <!-- Right wing feathers -->
+                    <path d="M290 75 C275 72 260 75 245 85" stroke="rgba(212,175,55,0.2)" stroke-width="0.8" fill="none"/>
+                    <path d="M280 70 C262 68 245 75 232 88" stroke="rgba(212,175,55,0.18)" stroke-width="0.8" fill="none"/>
+                    <path d="M265 65 C248 65 232 72 218 90" stroke="rgba(212,175,55,0.15)" stroke-width="0.8" fill="none"/>
+                    <!-- Tail feathers -->
+                    <path d="M145 175 L130 220 L140 210 L148 230 L150 215 L152 230 L160 210 L170 220 L155 175Z" fill="rgba(212,175,55,0.06)" stroke="rgba(212,175,55,0.25)" stroke-width="1"/>
+                    <!-- Talons -->
+                    <path d="M144 170 C140 178 135 185 128 192 M140 180 L132 188" stroke="rgba(212,175,55,0.2)" stroke-width="1" stroke-linecap="round" fill="none"/>
+                    <path d="M156 170 C160 178 165 185 172 192 M160 180 L168 188" stroke="rgba(212,175,55,0.2)" stroke-width="1" stroke-linecap="round" fill="none"/>
+                    <!-- Eye -->
+                    <circle cx="151" cy="60" r="2.5" fill="rgba(212,175,55,0.35)"/>
+                    <circle cx="151" cy="60" r="1" fill="rgba(212,175,55,0.6)"/>
+                </svg>
+                <!-- Wing spread lines -->
+                <div class="deco-winglines" id="decoWings2">
+                    <span class="wing-line wl-1"></span>
+                    <span class="wing-line wl-2"></span>
+                    <span class="wing-line wl-3"></span>
+                    <span class="wing-line wl-4"></span>
+                    <span class="wing-line wl-5"></span>
+                    <span class="wing-line wl-6"></span>
+                </div>
+                <!-- Altitude badge -->
+                <div class="deco-altitude" id="decoAltitude2">
+                    <svg class="alt-eagle-icon" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"><path d="M12 3 L8 9 L3 8 L6 12 L4 16 L8 15 L10 19 L12 16 L14 19 L16 15 L20 16 L18 12 L21 8 L16 9Z"/></svg>
+                    <span class="alt-text">RISE ABOVE ORDINARY</span>
+                </div>
+                <!-- Floating feather icons -->
+                <div class="deco-feathers" id="decoFeathers2">
+                    <svg class="feather-icon fi-1" viewBox="0 0 40 60" fill="none">
+                        <path d="M20 2 C20 2 8 18 8 35 C8 48 14 55 20 58 C26 55 32 48 32 35 C32 18 20 2 20 2Z" fill="rgba(212,175,55,0.06)" stroke="rgba(212,175,55,0.35)" stroke-width="1.2"/>
+                        <path d="M20 8 L20 55" stroke="rgba(212,175,55,0.25)" stroke-width="0.8"/>
+                        <path d="M20 20 L12 28" stroke="rgba(212,175,55,0.15)" stroke-width="0.6"/>
+                        <path d="M20 28 L28 35" stroke="rgba(212,175,55,0.15)" stroke-width="0.6"/>
+                        <path d="M20 35 L13 42" stroke="rgba(212,175,55,0.15)" stroke-width="0.6"/>
+                    </svg>
+                    <svg class="feather-icon fi-2" viewBox="0 0 40 60" fill="none">
+                        <path d="M20 2 C20 2 8 18 8 35 C8 48 14 55 20 58 C26 55 32 48 32 35 C32 18 20 2 20 2Z" fill="rgba(212,175,55,0.04)" stroke="rgba(212,175,55,0.28)" stroke-width="1.2"/>
+                        <path d="M20 8 L20 55" stroke="rgba(212,175,55,0.2)" stroke-width="0.8"/>
+                        <path d="M20 22 L27 30" stroke="rgba(212,175,55,0.12)" stroke-width="0.6"/>
+                        <path d="M20 32 L13 38" stroke="rgba(212,175,55,0.12)" stroke-width="0.6"/>
+                    </svg>
+                    <svg class="feather-icon fi-3" viewBox="0 0 40 60" fill="none">
+                        <path d="M20 2 C20 2 8 18 8 35 C8 48 14 55 20 58 C26 55 32 48 32 35 C32 18 20 2 20 2Z" fill="rgba(212,175,55,0.05)" stroke="rgba(212,175,55,0.3)" stroke-width="1.2"/>
+                        <path d="M20 8 L20 55" stroke="rgba(212,175,55,0.22)" stroke-width="0.8"/>
+                        <path d="M20 25 L12 32" stroke="rgba(212,175,55,0.13)" stroke-width="0.6"/>
+                        <path d="M20 38 L28 44" stroke="rgba(212,175,55,0.13)" stroke-width="0.6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- ===== SECTION 3: Strong Yet Smooth ===== -->
+            <div class="pin-content pin-content-3" id="pinContent3">
+                <span class="pin-label" id="pinLabel3">03 — The Experience</span>
+                <div class="pin-accent-line pin-accent-line-center" id="pinLine3"></div>
+                <h2 class="pin-heading" data-splitting>Strong Yet Smooth</h2>
+                <p class="pin-text" id="pinText3">DOJE is for those who break boundaries, overcome challenges, and seek a taste that matches their unstoppable energy.</p>
+                <div class="pin-stats pin-stats-center" id="pinStats3">
+                    <div class="pin-stat">
+                        <span class="pin-stat-number">8%</span>
+                        <span class="pin-stat-label">ABV Power</span>
+                    </div>
+                    <div class="pin-stat-divider"></div>
+                    <div class="pin-stat">
+                        <span class="pin-stat-number">500ml</span>
+                        <span class="pin-stat-label">Premium Volume</span>
+                    </div>
+                    <div class="pin-stat-divider"></div>
+                    <div class="pin-stat">
+                        <span class="pin-stat-number">∞</span>
+                        <span class="pin-stat-label">Ambition</span>
+                    </div>
+                </div>
+                <p class="pin-quote" id="pinQuote3">"Not just a beer. A statement."</p>
+            </div>
+
+            <!-- Section 3 Decorative Elements -->
+            <div class="pin-deco pin-deco-3" id="pinDeco3">
+                <!-- Energy wave rings -->
+                <div class="deco-energy-waves" id="decoWaves3">
+                    <span class="energy-wave ew-1"></span>
+                    <span class="energy-wave ew-2"></span>
+                    <span class="energy-wave ew-3"></span>
+                    <span class="energy-wave ew-4"></span>
+                </div>
+                <!-- ABV Progress Arc -->
+                <svg class="deco-abv-arc" id="decoAbvArc3" viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="88" stroke="rgba(212,175,55,0.15)" stroke-width="3" fill="none"/>
+                    <circle cx="100" cy="100" r="88" stroke="var(--gold)" stroke-width="3" fill="none"
+                        stroke-dasharray="553" stroke-dashoffset="553" stroke-linecap="round"
+                        class="abv-progress" id="abvProgress"/>
+                    <!-- Wheat wreath inside arc -->
+                    <path d="M70 140 Q80 120 85 100 Q80 110 70 115" stroke="rgba(212,175,55,0.2)" stroke-width="1" fill="rgba(212,175,55,0.05)"/>
+                    <path d="M65 135 Q78 118 82 95 Q75 108 65 112" stroke="rgba(212,175,55,0.15)" stroke-width="0.8" fill="none"/>
+                    <path d="M130 140 Q120 120 115 100 Q120 110 130 115" stroke="rgba(212,175,55,0.2)" stroke-width="1" fill="rgba(212,175,55,0.05)"/>
+                    <path d="M135 135 Q122 118 118 95 Q125 108 135 112" stroke="rgba(212,175,55,0.15)" stroke-width="0.8" fill="none"/>
+                    <text x="100" y="88" text-anchor="middle" fill="var(--gold)" font-family="'Panchang', sans-serif" font-size="38" font-weight="700">8%</text>
+                    <text x="100" y="116" text-anchor="middle" fill="rgba(212,175,55,0.7)" font-family="'Satoshi', sans-serif" font-size="10" letter-spacing="3.5" font-weight="500">ABV STRENGTH</text>
+                </svg>
+                <!-- Light rays -->
+                <div class="deco-lightrays" id="decoRays3">
+                    <span class="light-ray lr-1"></span>
+                    <span class="light-ray lr-2"></span>
+                    <span class="light-ray lr-3"></span>
+                    <span class="light-ray lr-4"></span>
+                    <span class="light-ray lr-5"></span>
+                    <span class="light-ray lr-6"></span>
+                </div>
+                <!-- Tasting notes with beer icons -->
+                <div class="deco-tasting" id="decoTasting3">
+                    <div class="taste-note tn-1">
+                        <svg class="tn-icon" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M17 8h1a4 4 0 010 8h-1M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4V8z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg>
+                        <span class="tn-label">Bold</span>
+                    </div>
+                    <div class="taste-note tn-2">
+                        <svg class="tn-icon" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 2L8 8h8L12 2z"/><path d="M8 8c-2 4-3 8-2 12h12c1-4 0-8-2-12"/><path d="M7 20h10"/></svg>
+                        <span class="tn-label">Crisp</span>
+                    </div>
+                    <div class="taste-note tn-3">
+                        <svg class="tn-icon" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22c5-3 8-7 8-12a8 8 0 10-16 0c0 5 3 9 8 12z"/><path d="M12 12a3 3 0 100-6 3 3 0 000 6z"/></svg>
+                        <span class="tn-label">Smooth</span>
+                    </div>
+                    <div class="taste-note tn-4">
+                        <svg class="tn-icon" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 3C7 3 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-3-7-8-7z"/><path d="M12 7c-1.5 0-3 1-3 3 0 3 3 5 3 5s3-2 3-5c0-2-1.5-3-3-3z"/></svg>
+                        <span class="tn-label">Rich</span>
+                    </div>
+                </div>
+                <!-- Watermark large text -->
+                <div class="deco-watermark" id="decoWatermark3">DOJE</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== UNIFIED SECTION: TAGLINES + EXPERIENCE GALLERY ========== -->
+    <section id="about" class="lifestyle-section">
+        <!-- Ambient background layers -->
+        <div class="exp-aurora" id="expAurora">
+            <div class="aurora-blob aurora-blob-1"></div>
+            <div class="aurora-blob aurora-blob-2"></div>
+            <div class="aurora-blob aurora-blob-3"></div>
+        </div>
+        <div class="tag-dot-grid"></div>
+        <div class="tag-spotlight" id="tagSpotlight">
+            <div class="spotlight-beam sb-1"></div>
+            <div class="spotlight-beam sb-2"></div>
+            <div class="spotlight-beam sb-3"></div>
+        </div>
+        <div class="tag-ticker" id="tagTicker">
+            <div class="ticker-track">
+                <span>DOJE</span><span>·</span><span>ROOTED IN ASSAM</span><span>·</span>
+                <span>RISE ABOVE</span><span>·</span><span>STRONG YET SMOOTH</span><span>·</span>
+                <span>DOJE</span><span>·</span><span>ROOTED IN ASSAM</span><span>·</span>
+                <span>RISE ABOVE</span><span>·</span><span>STRONG YET SMOOTH</span><span>·</span>
+            </div>
+        </div>
+        <div class="exp-particles">
+            <span class="exp-particle ep-1"></span>
+            <span class="exp-particle ep-2"></span>
+            <span class="exp-particle ep-3"></span>
+            <span class="exp-particle ep-4"></span>
+            <span class="exp-particle ep-5"></span>
+            <span class="exp-particle ep-6"></span>
+            <span class="exp-particle ep-7"></span>
+            <span class="exp-particle ep-8"></span>
+            <span class="exp-particle ep-9"></span>
+            <span class="exp-particle ep-10"></span>
+        </div>
+
+        <!-- YEAR-ROUND AVAILABILITY BLOCK
+             The globalCan (position: fixed) lands inside the center slot of
+             the product lineup, then crossfades into the static placeholder
+             so it scrolls naturally with the page from there on. -->
+        <div class="year-round-section" id="yearRoundSection">
+            <!-- yr-stage matches the can's footprint and is viewport-centered.
+                 Headline sits flush above it, label flush below. The fixed
+                 #globalCan lands inside #yrCanSlot at the same exact rect,
+                 so the only animated property at landing is scale. -->
+            <div class="yr-stage">
+                <div class="yr-heading-group">
+                    <span class="yr-availability-label">Availability:</span>
+                    <h2 class="yr-headline" data-splitting>YEAR ROUND</h2>
+                </div>
+
+                <div class="yr-product-img-wrap yr-feature-wrap" id="yrCanSlot">
+                    <img src="assets/DOJE-BOTTLE.png" alt="DOJE Strong 650ml Bottle" class="yr-product-img yr-product-img-static yr-product-img-bottle" id="yrCanStatic">
+                </div>
+
+                <span class="yr-product-label">DOJE STRONG &mdash; 650ML BOTTLE</span>
+            </div>
+        </div>
+
+
+
+
+        <!-- CTA Button -->
+        <div class="tag-cta-wrapper" id="tagCta">
+            <a href="#hero" class="tag-cta-btn">
+                <span class="tag-cta-glow"></span>
+                <span class="tag-cta-text">Experience The Spirit</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+
+        <!-- Horizontal Scroll Can (parallax decoration) -->
+        <div class="horizontal-can" id="horizontalCan">
+            <img src="assets/DOJE-BOTTLE.png" alt="DOJE Bottle" class="horizontal-can-img horizontal-bottle-img">
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" id="footer">
+        <span class="footer-glow" aria-hidden="true"></span>
+
+        <div class="footer-top">
+            <div class="container">
+                <!-- Newsletter / waitlist — merged into the footer -->
+                <div class="footer-head">
+                    <div class="footer-cta-copy">
+                        <span class="footer-cta-eyebrow"><span class="fce-dot"></span>Join the movement</span>
+                        <h2 class="footer-cta-title">RISE ABOVE ORDINARY</h2>
+                        <p>Be the first to know about new drops, events, and where to find DOJE near you.</p>
+                    </div>
+                    <form class="footer-newsletter" onsubmit="return false;">
+                        <input type="email" placeholder="your@email.com" aria-label="Email address" required>
+                        <button type="submit">
+                            <span>Join Waitlist</span>
+                            <span class="fn-arrow" aria-hidden="true">→</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                    <h3 class="footer-logo">DOJE</h3>
+                    <p class="footer-tagline">Rooted in Assam. Rising Beyond.</p>
+                    <p class="footer-desc">DOJE is brewed in Assam — where strength, spirit, and culture rise together. Strong yet smooth, DOJE celebrates those who rise higher.</p>
+                    <ul class="footer-contact">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                            <span>Guwahati, Assam, India</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                            <a href="mailto:hello@doje.in">hello@doje.in</a>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+                            <a href="tel:+911800000000">+91 1800 000 000</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-group footer-nav-group">
+                    <h4>Navigate</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Our Facility</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Certifications</a></li>
+                        <li><a href="news.html">News</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-social">
+                    <h4>Follow The Rise</h4>
+                    <div class="social-grid">
+                        <a href="#" class="social-chip" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="social-chip" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 3h-2.5A4 4 0 0 0 8.5 7v2.5H6V13h2.5v8h3.5v-8h2.6l.4-3.5H12V7a1 1 0 0 1 1-1h2z"/></svg>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="#" class="social-chip" aria-label="X / Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.5 3h3l-7 8 8.2 10h-6.4l-5-6.1L7 21H4l7.4-8.5L3.6 3H10l4.5 5.6zM16.3 19h1.7L8 5H6.3z"/></svg>
+                            <span>X / Twitter</span>
+                        </a>
+                        <a href="#" class="social-chip" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="3.5"/><path d="M10 9.2v5.6l5-2.8z" fill="currentColor" stroke="none"/></svg>
+                            <span>YouTube</span>
+                        </a>
+                    </div>
+                    <a href="#hero" class="footer-backtop" aria-label="Back to top">
+                        <span>Back to top</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                    </a>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Oversized brand wordmark watermark -->
+        <div class="footer-wordmark" aria-hidden="true">DOJE</div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p class="footer-copy">&copy; 2026 Sunit Breweries. All rights reserved.</p>
+                <ul class="footer-legal-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+                <p class="footer-legal"><span class="footer-legal-badge">18+</span> Enjoy responsibly. Must be of legal drinking age.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <!-- Age Gate — runs first to lock site until verified -->
+    <script src="js/age-gate.js?v=7"></script>
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <!-- Splitting.js -->
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+    <!-- Main Script -->
+    <script src="script.js?v=19"></script>
+</body>
+</html>
+

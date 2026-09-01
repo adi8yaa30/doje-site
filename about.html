@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOJE | About Us — Every Great Pour Has a Story</title>
+    <meta name="description" content="Every great pour has a story. DOJE is a premium beer crafted by Sunit Breweries — bold in character, refined in taste, and made for moments worth celebrating.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Hero-critical assets -->
+    <link rel="preload" as="image" href="assets/hero-can.webp">
+    <link rel="preload" as="image" href="assets/about-page assets/clouds-optimized.jpg">
+
+    <link rel="stylesheet" href="about.css?v=9">
+</head>
+<body class="ab2">
+
+    <!-- ========== NAV (careers-style, shared design) ========== -->
+    <nav class="cr-nav" id="ab2Nav">
+        <ul class="cr-nav-pill cr-nav-pill--left">
+            <li><a href="index.html">Can</a></li>
+            <li><a href="bottle.html">Bottle</a></li>
+            <li><a href="about.html" class="is-active" aria-current="page">Doje's Story</a></li>
+        </ul>
+
+        <a href="index.html#hero" class="cr-nav-logo" aria-label="DOJE — home">
+            <img src="assets/doje-logo-nav.png" alt="DOJE" width="454" height="149">
+        </a>
+
+        <ul class="cr-nav-pill cr-nav-pill--right">
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#hero" class="cr-nav-shop">Shop</a></li>
+        </ul>
+    </nav>
+
+    <main id="ab2Main">
+      <!-- Cloud atmosphere covers hero → brewing timeline only (per Figma) -->
+      <div class="ab2-cloud-zone" id="ab2CloudZone">
+        <div class="ab2-clouds" id="ab2Clouds" aria-hidden="true"></div>
+        <div class="ab2-clouds ab2-clouds--far" id="ab2CloudsFar" aria-hidden="true"></div>
+
+        <!-- ================= HERO ================= -->
+        <header class="ab2-hero" id="ab2Hero">
+            <div class="ab2-hero-inner">
+                <h1 class="ab2-hero-title">
+                    <span class="ab2-hero-line" data-hero-line>Every Great Pour</span>
+                    <span class="ab2-hero-line" data-hero-line>Has a <span class="ab2-gold">Story.</span></span>
+                </h1>
+            </div>
+            <div class="ab2-hero-can" id="ab2HeroCan">
+                <img src="assets/hero-can.webp" alt="A floating can of DOJE Strong" fetchpriority="high">
+            </div>
+            <div class="ab2-scroll-cue" aria-hidden="true">
+                <span class="ab2-scroll-dot"></span>
+                <span>Scroll</span>
+            </div>
+        </header>
+
+        <!-- ================= OUR STORY ================= -->
+        <section class="ab2-story" id="story">
+            <p class="ab2-eyebrow ab2-reveal">Our Story</p>
+            <span class="ab2-divider ab2-reveal" aria-hidden="true"></span>
+            <p class="ab2-story-text ab2-reveal">
+                Born from a vision to craft more than just beer, DOJE represents bold
+                character, refined brewing, and moments worth celebrating.
+            </p>
+            <div class="ab2-badge ab2-reveal">
+                <span class="ab2-badge-ring" aria-hidden="true"></span>
+                <span class="ab2-badge-name">Sunit Breweries</span>
+                <span class="ab2-badge-est">Estd. 2022</span>
+            </div>
+        </section>
+
+        <!-- ================= FEATURES ================= -->
+        <section class="ab2-features" id="features" aria-label="What defines DOJE">
+            <div class="ab2-feature ab2-feature--tl ab2-reveal" data-feature>
+                <div class="ab2-feature-head">
+                    <h3 class="ab2-feature-title">Craft</h3>
+                    <img class="ab2-feature-icon" src="assets/about-page assets/craft-icon.png" alt="" aria-hidden="true">
+                </div>
+                <span class="ab2-feature-rule" aria-hidden="true"></span>
+                <p class="ab2-feature-text">Every bottle reflects careful brewing, premium ingredients, and uncompromising attention to detail.</p>
+            </div>
+
+            <div class="ab2-feature ab2-feature--tr ab2-reveal" data-feature>
+                <div class="ab2-feature-head">
+                    <img class="ab2-feature-icon" src="assets/about-page assets/taste-icon.png" alt="" aria-hidden="true">
+                    <h3 class="ab2-feature-title">Taste</h3>
+                </div>
+                <span class="ab2-feature-rule" aria-hidden="true"></span>
+                <p class="ab2-feature-text">Bold, balanced, and remarkably smooth — crafted for those who expect more.</p>
+            </div>
+
+            <div class="ab2-feature ab2-feature--bl ab2-reveal" data-feature>
+                <div class="ab2-feature-head">
+                    <h3 class="ab2-feature-title">Quality</h3>
+                    <img class="ab2-feature-icon" src="assets/about-page assets/quality-icon.png" alt="" aria-hidden="true">
+                </div>
+                <span class="ab2-feature-rule" aria-hidden="true"></span>
+                <p class="ab2-feature-text">Consistent brewing standards ensure every pour delivers the same refined experience.</p>
+            </div>
+
+            <div class="ab2-feature ab2-feature--br ab2-reveal" data-feature>
+                <div class="ab2-feature-head">
+                    <img class="ab2-feature-icon" src="assets/about-page assets/experience-icon.png" alt="" aria-hidden="true">
+                    <h3 class="ab2-feature-title">Experience</h3>
+                </div>
+                <span class="ab2-feature-rule" aria-hidden="true"></span>
+                <p class="ab2-feature-text">DOJE is made for moments that deserve something extraordinary.</p>
+            </div>
+
+            <div class="ab2-features-bottle" id="ab2Bottle">
+                <img src="assets/features-bottle.webp" alt="A bottle of DOJE Strong" loading="lazy">
+            </div>
+        </section>
+
+        <!-- ================= BREWING TIMELINE ================= -->
+        <section class="ab2-timeline" id="process" aria-label="The DOJE brewing process">
+            <div class="ab2-timeline-track" aria-hidden="true">
+                <span class="ab2-timeline-line"></span>
+                <span class="ab2-timeline-fill" id="ab2TimelineFill"></span>
+            </div>
+
+            <ol class="ab2-milestones">
+                <li class="ab2-ms ab2-ms--left" data-ms>
+                    <span class="ab2-ms-node" aria-hidden="true"></span>
+                    <div class="ab2-ms-side ab2-ms-side--label">
+                        <h3 class="ab2-ms-title">Premium Sourced Ingredients</h3>
+                        <img class="ab2-ms-icon" src="assets/about-page assets/premium-sourced-ingredients-icon.png" alt="" aria-hidden="true">
+                    </div>
+                    <div class="ab2-ms-side ab2-ms-side--copy">
+                        <span class="ab2-ms-num">01.</span>
+                        <p class="ab2-ms-text">Premium malt, quality hops, pure water, and carefully selected yeast create the foundation of every DOJE brew.</p>
+                    </div>
+                </li>
+
+                <li class="ab2-ms ab2-ms--right" data-ms>
+                    <span class="ab2-ms-node" aria-hidden="true"></span>
+                    <div class="ab2-ms-side ab2-ms-side--copy">
+                        <span class="ab2-ms-num">02.</span>
+                        <p class="ab2-ms-text">Every batch is brewed under carefully controlled temperatures to unlock balanced flavour and aroma.</p>
+                    </div>
+                    <div class="ab2-ms-side ab2-ms-side--label">
+                        <h3 class="ab2-ms-title">Brewing</h3>
+                        <img class="ab2-ms-icon" src="assets/about-page assets/brewing-icon.png" alt="" aria-hidden="true">
+                    </div>
+                </li>
+
+                <li class="ab2-ms ab2-ms--left" data-ms>
+                    <span class="ab2-ms-node" aria-hidden="true"></span>
+                    <div class="ab2-ms-side ab2-ms-side--label">
+                        <h3 class="ab2-ms-title">Fermentation</h3>
+                        <img class="ab2-ms-icon" src="assets/about-page assets/fermentation-icon.png" alt="" aria-hidden="true">
+                    </div>
+                    <div class="ab2-ms-side ab2-ms-side--copy">
+                        <span class="ab2-ms-num">03.</span>
+                        <p class="ab2-ms-text">Time allows the flavours to mature naturally, creating a smooth finish with depth and character.</p>
+                    </div>
+                </li>
+
+                <li class="ab2-ms ab2-ms--right" data-ms>
+                    <span class="ab2-ms-node" aria-hidden="true"></span>
+                    <div class="ab2-ms-side ab2-ms-side--copy">
+                        <span class="ab2-ms-num">04.</span>
+                        <p class="ab2-ms-text">Every batch undergoes rigorous quality checks to ensure consistency from the first bottle to the last.</p>
+                    </div>
+                    <div class="ab2-ms-side ab2-ms-side--label">
+                        <h3 class="ab2-ms-title">Quality Control</h3>
+                        <img class="ab2-ms-icon" src="assets/about-page assets/quality-control-icon.png" alt="" aria-hidden="true">
+                    </div>
+                </li>
+
+                <li class="ab2-ms ab2-ms--left" data-ms>
+                    <span class="ab2-ms-node" aria-hidden="true"></span>
+                    <div class="ab2-ms-side ab2-ms-side--label">
+                        <h3 class="ab2-ms-title">Ready to Pour</h3>
+                        <img class="ab2-ms-icon" src="assets/about-page assets/ready-to-pour-icon.png" alt="" aria-hidden="true">
+                    </div>
+                    <div class="ab2-ms-side ab2-ms-side--copy">
+                        <span class="ab2-ms-num">05.</span>
+                        <p class="ab2-ms-text">Chilled, poured, and shared — the final step is creating moments worth remembering.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+      </div><!-- /ab2-cloud-zone -->
+
+        <!-- ================= A BRAND OF SUNIT BREWERIES ================= -->
+        <section class="ab2-brand" id="sunit">
+            <h2 class="ab2-brand-title ab2-reveal">
+                A Brand of<br><span class="ab2-gold">Sunit Breweries</span>
+            </h2>
+
+            <figure class="ab2-brand-figure" data-brand-figure>
+                <img src="assets/about-page assets/barrels.webp" alt="Oak barrels ageing inside the Sunit Breweries cellar" loading="lazy">
+            </figure>
+
+            <p class="ab2-brand-text ab2-reveal">
+                DOJE is proudly crafted by Sunit Breweries, where every brew begins with a
+                simple belief: exceptional beer is never an accident. From sourcing quality
+                ingredients to maintaining rigorous brewing standards, every step is guided by
+                precision, patience, and an unwavering commitment to excellence. The result is a
+                beer that is bold in character, refined in taste, and made for moments worth
+                celebrating.
+            </p>
+
+            <a href="#" class="ab2-btn ab2-reveal">About Sunit Breweries</a>
+        </section>
+
+        <!-- ================= CLOSING — FULL-BLEED HAND + CAN ================= -->
+        <section class="ab2-cta" id="cta">
+            <div class="ab2-cta-can" id="ab2CtaCan">
+                <img src="assets/about-page assets/footer-image.webp" alt="A hand holding a chilled can of DOJE Strong" loading="lazy">
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="about.js?v=8"></script>
+</body>
+</html>
